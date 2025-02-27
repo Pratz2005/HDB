@@ -25,40 +25,40 @@ Once `npm install` completes successfully, you are good to go! Feel free to star
 To maintain a clean and meaningful commit history, please follow commit message semantics.
 
 
-### FastAPI Project SetUp
+# FastAPI Project SetUp
 
 ## Windows SetUp
 
-# Navigate to project directory
+### Navigate to project directory
 cd smart-hdb-finder/backend
 
-# Create a virtual environment
+### Create a virtual environment
 python -m venv venv
 
-# Activate the virtual environment
+### Activate the virtual environment
 venv\Scripts\activate
 
-# Install required packages
+### Install required packages
 pip install -r requirements.txt
 
-# Start the FastAPI application
+### Start the FastAPI application
 uvicorn app.main:app --reload
 
 ## MacOS/Linus SetUp
 
-# Navigate to project directory
+### Navigate to project directory
 cd smart-hdb-finder/backend
 
-# Create a virtual environment
+### Create a virtual environment
 python3 -m venv venv
 
-# Activate the virtual environment
+### Activate the virtual environment
 source venv/bin/activate
 
-# Install required packages
+### Install required packages
 pip install -r requirements.txt
 
-# Start the FastAPI application
+### Start the FastAPI application
 uvicorn app.main:app --reload
 
 ### Accessing the API
