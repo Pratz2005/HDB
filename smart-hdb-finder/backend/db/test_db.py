@@ -7,7 +7,6 @@ load_dotenv()
 
 # Get MongoDB URI from .env.local
 MONGODB_URI = os.getenv("MONGODB_URI")
-print(MONGODB_URI)
 
 # Test connection
 try:
