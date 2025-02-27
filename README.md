@@ -23,3 +23,46 @@ Once `npm install` completes successfully, you are good to go! Feel free to star
 
 ### 4. Follow Commit Message Semantics
 To maintain a clean and meaningful commit history, please follow commit message semantics.
+
+
+### FastAPI Project SetUp
+
+## Windows SetUp
+
+# Navigate to project directory
+cd smart-hdb-finder/backend
+
+# Create a virtual environment
+python -m venv venv
+
+# Activate the virtual environment
+venv\Scripts\activate
+
+# Install required packages
+pip install -r requirements.txt
+
+# Start the FastAPI application
+uvicorn app.main:app --reload
+
+## MacOS/Linus SetUp
+
+# Navigate to project directory
+cd smart-hdb-finder/backend
+
+# Create a virtual environment
+python3 -m venv venv
+
+# Activate the virtual environment
+source venv/bin/activate
+
+# Install required packages
+pip install -r requirements.txt
+
+# Start the FastAPI application
+uvicorn app.main:app --reload
+
+### Accessing the API
+Once the application is running, you can:
+
+Access the API at: http://127.0.0.1:8000
+View the interactive API documentation at: http://127.0.0.1:8000/docs
