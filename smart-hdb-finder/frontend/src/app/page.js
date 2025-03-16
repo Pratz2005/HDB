@@ -20,7 +20,7 @@ export default function Home() {
       {/* Hero / Landing Section */}
       <div className="relative z-10 flex flex-col items-center justify-center h-[calc(100vh-64px)] text-center px-4">
         <h1 className="text-7xl sm:text-8xl font-bold mb-4 leading-tight text-left tracking-tight leading-[0.9]">
-          Discover
+          Discover 
           <br />
           <span className="text-orange-500">Homes</span> Near
           <br />
