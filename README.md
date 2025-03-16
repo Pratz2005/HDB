@@ -31,6 +31,7 @@ Once `npm install` completes successfully, you are good to go! Feel free to star
 
 ### 5. Follow Commit Message Semantics
 To maintain a clean and meaningful commit history, please follow commit message semantics.
+
 feat: add a new feature  
 fix: fix a bug  
 docs: update documentation  
