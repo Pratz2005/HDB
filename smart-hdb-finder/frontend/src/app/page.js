@@ -2,24 +2,6 @@
 "use client";
 import Link from "next/link";
 
-// // Import the functions you need from the SDKs you need
-// import { initializeApp } from "firebase/app";
-// // TODO: Add SDKs for Firebase products that you want to use
-// // https://firebase.google.com/docs/web/setup#available-libraries
-
-// // Your web app's Firebase configuration
-// const firebaseConfig = {
-//   apiKey: "AIzaSyDXV2KECb39XFTdLXBM1M5GKkDOwZuEu4g",
-//   authDomain: "smart-hdb-finder.firebaseapp.com",
-//   projectId: "smart-hdb-finder",
-//   storageBucket: "smart-hdb-finder.firebasestorage.app",
-//   messagingSenderId: "85073155803",
-//   appId: "1:85073155803:web:1cc0edadaebfe836e45efe"
-// };
-
-// Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-
 export default function Home() {
   return (
     <main className="relative min-h-screen bg-[url(/hdb_landing_page.jpg)] bg-cover bg-center text-white">
