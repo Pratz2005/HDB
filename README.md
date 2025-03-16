@@ -9,9 +9,22 @@ If you have created an additional folder in your file system to store this GitHu
 ```sh
 cd smart-hdb-finder
 ```
+### 2. Navigate into the Frontend Folder
+Before installing dependencies, make sure you are inside the frontend folder:
 
+<<<<<<< HEAD
 ### 2. Install Dependencies
 Run the following commands to install all necessary dependencies and match the required versions:
+=======
+```sh
+cd frontend
+```
+⚠️ Note: npm install must be run in the frontend folder. Running it elsewhere (e.g., the root folder) will result in issues as the necessary package.json resides within the frontend directory.
+
+
+### 3. Install Dependencies
+Run the following command to install all necessary dependencies and match the required versions:
+>>>>>>> 696b43a69723415e48d4f4478b9147d61c546b9a
 ```sh
 npm install
 ```
@@ -21,11 +34,17 @@ npm install firebase
 
 This step ensures that everyone is working with the same package versions and avoids compatibility issues.
 
-### 3. Start Coding
+### 4. Start Coding
 Once `npm install` completes successfully, you are good to go! Feel free to start coding 🚀.
 
-### 4. Follow Commit Message Semantics
+### 5. Follow Commit Message Semantics
 To maintain a clean and meaningful commit history, please follow commit message semantics.
+feat: add a new feature  
+fix: fix a bug  
+docs: update documentation  
+style: format code (no code change)  
+refactor: code refactoring  
+chore: other changes that don't modify src or test files
 
 
 # FastAPI Project SetUp
