@@ -11,9 +11,12 @@ cd smart-hdb-finder
 ```
 
 ### 2. Install Dependencies
-Run the following command to install all necessary dependencies and match the required versions:
+Run the following commands to install all necessary dependencies and match the required versions:
 ```sh
 npm install
+```
+```sh
+npm install firebase
 ```
 
 This step ensures that everyone is working with the same package versions and avoids compatibility issues.
