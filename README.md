@@ -12,10 +12,6 @@ cd smart-hdb-finder
 ### 2. Navigate into the Frontend Folder
 Before installing dependencies, make sure you are inside the frontend folder:
 
-<<<<<<< HEAD
-### 2. Install Dependencies
-Run the following commands to install all necessary dependencies and match the required versions:
-=======
 ```sh
 cd frontend
 ```
@@ -24,12 +20,8 @@ cd frontend
 
 ### 3. Install Dependencies
 Run the following command to install all necessary dependencies and match the required versions:
->>>>>>> 696b43a69723415e48d4f4478b9147d61c546b9a
 ```sh
 npm install
-```
-```sh
-npm install firebase
 ```
 
 This step ensures that everyone is working with the same package versions and avoids compatibility issues.
