@@ -7,7 +7,7 @@ To ensure a smooth development workflow, please follow these steps before coding
 ### 1. Navigate into the App Directory
 If you have created an additional folder in your file system to store this GitHub project, make sure to `cd` into the app itself before proceeding:
 ```sh
-cd smart-hdb-finder/frontend
+cd smart-hdb-finder
 ```
 
 ### 2. Install Dependencies
