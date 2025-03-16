@@ -7,7 +7,7 @@ To ensure a smooth development workflow, please follow these steps before coding
 ### 1. Navigate into the App Directory
 If you have created an additional folder in your file system to store this GitHub project, make sure to `cd` into the app itself before proceeding:
 ```sh
-cd smart-hdb-finder
+cd smart-hdb-finder/frontend
 ```
 
 ### 2. Install Dependencies
@@ -42,7 +42,7 @@ venv\Scripts\activate
 pip install -r requirements.txt
 
 ### Start the FastAPI application
-uvicorn app.main:app --reload
+uvicorn main:app --reload
 
 ## MacOS/Linus SetUp
 
@@ -59,7 +59,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 
 ### Start the FastAPI application
-uvicorn app.main:app --reload
+uvicorn main:app --reload
 
 ### Accessing the API
 Once the application is running, you can:
