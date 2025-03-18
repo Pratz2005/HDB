@@ -1,27 +1,25 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { auth } from "../utils/firebaseClient.js";
+import { auth } from "../../utils/firebaseClient.js";
 import { FaGoogle, FaUser } from "react-icons/fa";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-  const [rememberMe, setRememberMe] = useState(false);
+  const router = useRouter();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       console.log("Logged in:", userCredential.user);
-      // Handle remember me functionality (e.g., store in localStorage)
-      if (rememberMe) {
-        localStorage.setItem("rememberMe", email);
-      } else {
-        localStorage.removeItem("rememberMe");
-      }
+      
+      // Redirect user here:
+      router.push("/dashboard");
     } catch (error) {
       setError("Invalid email or password.");
     }
@@ -32,10 +30,17 @@ export default function Login() {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
       console.log("Logged in with Google:", result.user);
-      // Redirect user here
+
+      // Redirect user here:
+      router.push("/dashboard");
     } catch (error) {
       console.error("Google login error:", error);
     }
+  };
+
+  const continueAsGuest = () => {
+    // Redirect user here:
+    router.push("/dashboard");
   };
 
   return (
@@ -51,38 +56,32 @@ export default function Login() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none transition"
+              className="w-full text-black px-4 py-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none transition"
             />
             <input
               type="password"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none transition"
+              required
+              className="w-full text-black px-4 py-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none transition"
             />
-            <div className="flex items-center justify-between">
-              <label className="flex items-center text-sm text-gray-600">
-                <input
-                  type="checkbox"
-                  className="mr-2"
-                  checked={rememberMe}
-                  onChange={() => setRememberMe(!rememberMe)}
-                />
-                Remember me
-              </label>
-              <a href="/forgot-password" className="text-sm text-indigo-600 hover:underline">Forgot password?</a>
+            <div className="w-full flex items-center">
+              {error && <p className="text-sm text-red-500">{error}</p>}
+              <a href="/auth/forgot-password" className="ml-auto text-sm text-indigo-600 hover:underline">
+                Forgot password?
+              </a>
             </div>
             <button
               type="submit"
-              className="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-800 transition"
+              className="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-700 transition"
             >
               Log In
             </button>
             <div className="text-center text-sm mt-2 text-gray-600">
-              Don't have an account? <a href="/signup" className="text-indigo-600 hover:underline">Sign up</a>
+              Don't have an account? <a href="/auth/register" className="text-indigo-600 hover:underline">Sign up</a>
             </div>
           </form>
-          {error && <p className="text-red-500 text-center mt-4">{error}</p>}
           
           <div className="flex items-center my-4">
             <hr className="flex-grow border-gray-600" />
@@ -95,12 +94,12 @@ export default function Login() {
               onClick={handleGoogleLogin}
               className="w-full flex items-center justify-center bg-red-500 hover:bg-red-700 py-2 rounded-lg transition text-white"
             >
-              <FaGoogle className="mr-2" /> Sign in with Google
+              <FaGoogle className="mr-2" /> Continue with Google
             </button>
           </div>
           <div className="my-4 text-center">
             <button
-              //onClick={continueAsGuest}
+              onClick={continueAsGuest}
               className="w-full flex items-center justify-center bg-gray-500 hover:bg-gray-700 py-2 rounded-lg transition text-white"
             >
               <FaUser className="mr-2" /> Continue as Guest
