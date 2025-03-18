@@ -22,14 +22,14 @@ export default function Home() {
 
         <div className="flex gap-10 -ml-12">
           <Link
-            href="/login"
+            href="/auth/login"
             className="bg-white border border-orange-500 text-orange-500 px-4 py-2 rounded font-semibold w-60
             hover:bg-orange-500 hover:text-white hover:shadow-md transition text-center"
           >
             Login
           </Link>
           <Link
-            href="/register"
+            href="/auth/register"
             className="bg-white border border-orange-500 text-orange-500 px-4 py-2 rounded font-semibold w-60
             hover:bg-orange-500 hover:text-white hover:shadow-md transition text-center"
           >

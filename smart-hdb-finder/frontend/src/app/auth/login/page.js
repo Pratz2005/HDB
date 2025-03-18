@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { auth } from "../utils/firebaseClient.js";
+import { auth } from "../../utils/firebaseClient.js";
 import { FaGoogle, FaUser } from "react-icons/fa";
 
 export default function Login() {
@@ -66,20 +66,22 @@ export default function Login() {
               required
               className="w-full text-black px-4 py-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none transition"
             />
-            <div className="w-full text-right">
-            <a href="/forgot-password" className="text-sm text-indigo-600 hover:underline">Forgot password?</a>
+            <div className="w-full flex items-center">
+              {error && <p className="text-sm text-red-500">{error}</p>}
+              <a href="/auth/forgot-password" className="ml-auto text-sm text-indigo-600 hover:underline">
+                Forgot password?
+              </a>
             </div>
             <button
               type="submit"
-              className="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-800 transition"
+              className="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-700 transition"
             >
               Log In
             </button>
             <div className="text-center text-sm mt-2 text-gray-600">
-              Don't have an account? <a href="/register" className="text-indigo-600 hover:underline">Sign up</a>
+              Don't have an account? <a href="/auth/register" className="text-indigo-600 hover:underline">Sign up</a>
             </div>
           </form>
-          {error && <p className="text-red-500 text-center mt-4">{error}</p>}
           
           <div className="flex items-center my-4">
             <hr className="flex-grow border-gray-600" />
