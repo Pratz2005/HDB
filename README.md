@@ -66,7 +66,7 @@ source venv/bin/activate
 ```sh
 pip install -r requirements.txt
 ```
-After switching branches or pulling new changes from the repository, always run the install command again to keep your environment in sync.
+👉 After switching branches or pulling new changes from the repository, always run the install command again to keep your environment in sync.
 
 ### Start the FastAPI application
 ```sh
