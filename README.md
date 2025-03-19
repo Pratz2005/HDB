@@ -66,11 +66,22 @@ source venv/bin/activate
 ```sh
 pip install -r requirements.txt
 ```
+After switching branches or pulling new changes from the repository, always run the install command again to keep your environment in sync.
 
 ### Start the FastAPI application
 ```sh
 uvicorn main:app --reload
 ```
+### 4. Adding New Dependencies (IMPORTANT)
+If you install any new packages during development using:
+```sh
+pip install <package-name>
+```
+👉 After that, you must update the requirements.txt file so others can install the same dependencies and avoid "ModuleNotFoundError" issues:
+```sh
+pip freeze > requirements.txt
+```
+✅ This ensures that everyone's development environment stays consistent.
 
 ### Accessing the API
 Once the application is running, you can access the API at: http://127.0.0.1:8000
