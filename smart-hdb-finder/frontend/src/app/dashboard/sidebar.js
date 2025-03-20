@@ -3,6 +3,11 @@ import { useState } from "react";
 import PriceRange from "./priceRange";
 import Transport from "./transport";
 import Lifestyle from "./lifestyle";
+import Education from "./education";
+import Healthcare from "./healthcare";
+import Shopping from "./shopping";
+import Finance from "./finance";
+import Family from "./family";
 
 export default function Sidebar() {
   const [openSections, setOpenSections] = useState({});
@@ -50,12 +55,12 @@ export default function Sidebar() {
       {/* Dropdown Sections */}
       {[
         { name: "Transport", component: <Transport /> },
-        { name: "Education", component: "Education content here..." },
-        { name: "Healthcare", component: "Healthcare content here..." },
-        { name: "Shopping & Dining", component: "Shopping content here..." },
+        { name: "Education", component: <Education /> },
+        { name: "Healthcare", component: <Healthcare /> },
+        { name: "Shopping & Dining", component: <Shopping /> },
         { name: "Lifestyle & Recreation", component: <Lifestyle/> },
-        { name: "Financial Services", component: "Financial services content here..." },
-        { name: "Family & Elder Care", component: "Elder care content here..." },
+        { name: "Financial Services", component: <Finance/> },
+        { name: "Family & Elder Care", component: <Family/> },
       ].map((section) => (
         <div key={section.name} className="mb-2">
           <button
