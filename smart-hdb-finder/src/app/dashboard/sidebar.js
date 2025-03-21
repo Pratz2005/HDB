@@ -3,6 +3,11 @@ import { useState } from "react";
 import PriceRange from "./priceRange";
 import Transport from "./transport";
 import Lifestyle from "./lifestyle";
+import Education from "./education";
+import Healthcare from "./healthcare";
+import Shopping from "./shopping";
+import Finance from "./finance";
+import Family from "./family";
 
 export default function Sidebar() {
   const [openSections, setOpenSections] = useState({});
@@ -16,14 +21,15 @@ export default function Sidebar() {
   };
 
   return (
-    <div className="w-80 bg-white shadow-md border-r p-4 h-screen overflow-y-auto">
+    <div className="w-[300px] bg-white shadow-md border-r p-4 h-screen overflow-y-auto"
+      style ={{scrollbarGutter: 'stable'}}>
       {/* HDB Type Selection */}
       <div className="mb-4 text-black">
         <h2 className="text-lg font-semibold mb-2">HDB Type</h2>
         <div className="flex space-x-2">
-          <button className="px-4 py-2 border-2 border-blue-400 text-blue-600 rounded-lg font-semibold hover:bg-blue-100 transition">Resale</button>
-          <button className="px-4 py-2 border-2 border-blue-400 text-blue-600 rounded-lg font-semibold hover:bg-blue-100 transition">BTO</button>
-          <button className="px-4 py-2 border-2 border-blue-400 text-blue-600 rounded-lg font-semibold hover:bg-blue-100 transition">Rental</button>
+          <button className="px-4 py-2 border-2 border-orange-500 text-orange-500 rounded-lg font-semibold hover:bg-blue-100 transition">Resale</button>
+          <button className="px-4 py-2 border-2 border-orange-500 text-orange-500 rounded-lg font-semibold hover:bg-blue-100 transition">BTO</button>
+          <button className="px-4 py-2 border-2 border-orange-500 text-orange-500 rounded-lg font-semibold hover:bg-blue-100 transition">Rental</button>
         </div>
       </div>
 
@@ -50,12 +56,12 @@ export default function Sidebar() {
       {/* Dropdown Sections */}
       {[
         { name: "Transport", component: <Transport /> },
-        { name: "Education", component: "Education content here..." },
-        { name: "Healthcare", component: "Healthcare content here..." },
-        { name: "Shopping & Dining", component: "Shopping content here..." },
+        { name: "Education", component: <Education /> },
+        { name: "Healthcare", component: <Healthcare /> },
+        { name: "Shopping & Dining", component: <Shopping /> },
         { name: "Lifestyle & Recreation", component: <Lifestyle/> },
-        { name: "Financial Services", component: "Financial services content here..." },
-        { name: "Family & Elder Care", component: "Elder care content here..." },
+        { name: "Financial Services", component: <Finance/> },
+        { name: "Family & Elder Care", component: <Family/> },
       ].map((section) => (
         <div key={section.name} className="mb-2">
           <button
@@ -66,7 +72,7 @@ export default function Sidebar() {
             <span>{openSections[section.name] ? "▲" : "▼"}</span>
           </button>
           {openSections[section.name] && (
-            <div className="p-2 text-gray-600 text-sm">{section.component}</div>
+            <div className="p-2 text-gray-600 text-sm w-full">{section.component}</div>
           )}
         </div>
       ))}

@@ -2,8 +2,8 @@
 import { useState } from "react";
 
 export default function Transport() {
-  const [mrtDistance, setMrtDistance] = useState([500, 1000]);
-  const [busStopDistance, setBusStopDistance] = useState([100, 700]);
+  const [mrtDistance, setMrtDistance] = useState(1000);
+  const [busStopDistance, setBusStopDistance] = useState(500);
 
   return (
     <div className="p-2 text-black text-sm">
@@ -24,21 +24,17 @@ export default function Transport() {
             type="range"
             min="100"
             max="2000"
-            value={mrtDistance[0]}
-            onChange={(e) => setMrtDistance([parseInt(e.target.value), mrtDistance[1]])}
-            className="w-full"
-          />
-          <input
-            type="range"
-            min="100"
-            max="2000"
-            value={mrtDistance[1]}
-            onChange={(e) => setMrtDistance([mrtDistance[0], parseInt(e.target.value)])}
-            className="w-full"
+            step="100"
+            value={mrtDistance}
+            onChange={(e) => setMrtDistance(parseInt(e.target.value))}
+            className="w-full appearance-none h-2 rounded-lg bg-orange-200 
+               accent-orange-500"
+            style={{
+              background: `linear-gradient(to right, #f97316 ${(mrtDistance - 100) / 19}%, #FFCC80 ${(mrtDistance - 100) / 19}%)`,
+            }}
           />
           <div className="flex justify-between text-xs">
-            <span>{mrtDistance[0]}m</span>
-            <span>{mrtDistance[1]}m</span>
+            <span>{mrtDistance}m</span>
           </div>
         </div>
 
@@ -49,21 +45,17 @@ export default function Transport() {
             type="range"
             min="50"
             max="1000"
-            value={busStopDistance[0]}
-            onChange={(e) => setBusStopDistance([parseInt(e.target.value), busStopDistance[1]])}
-            className="w-full"
+            step="50"
+            value={busStopDistance}
+            onChange={(e) => setBusStopDistance(parseInt(e.target.value))}
+            className="w-full appearance-none h-2 rounded-lg bg-orange-200 
+               accent-orange-500"
+            style={{
+              background: `linear-gradient(to right, #f97316 ${(busStopDistance - 50) / 9.5}%, #FFCC80 ${(busStopDistance - 50) / 9.5}%)`,
+            }}
           />
-          <input
-            type="range"
-            min="50"
-            max="1000"
-            value={busStopDistance[1]}
-            onChange={(e) => setBusStopDistance([busStopDistance[0], parseInt(e.target.value)])}
-            className="w-full"
-          />
-          <div className="flex justify-between text-xs">
-            <span>{busStopDistance[0]}m</span>
-            <span>{busStopDistance[1]}m</span>
+          <div className="flex justify-between text-xs bg-orange">
+            <span>{busStopDistance}m</span>
           </div>
         </div>
 
