@@ -27,9 +27,9 @@ export default function Sidebar() {
       <div className="mb-4 text-black">
         <h2 className="text-lg font-semibold mb-2">HDB Type</h2>
         <div className="flex space-x-2">
-          <button className="px-4 py-2 border-2 border-blue-400 text-blue-600 rounded-lg font-semibold hover:bg-blue-100 transition">Resale</button>
-          <button className="px-4 py-2 border-2 border-blue-400 text-blue-600 rounded-lg font-semibold hover:bg-blue-100 transition">BTO</button>
-          <button className="px-4 py-2 border-2 border-blue-400 text-blue-600 rounded-lg font-semibold hover:bg-blue-100 transition">Rental</button>
+          <button className="px-4 py-2 border-2 border-orange-500 text-orange-500 rounded-lg font-semibold hover:bg-blue-100 transition">Resale</button>
+          <button className="px-4 py-2 border-2 border-orange-500 text-orange-500 rounded-lg font-semibold hover:bg-blue-100 transition">BTO</button>
+          <button className="px-4 py-2 border-2 border-orange-500 text-orange-500 rounded-lg font-semibold hover:bg-blue-100 transition">Rental</button>
         </div>
       </div>
 

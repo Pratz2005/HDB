@@ -27,7 +27,11 @@ export default function Transport() {
             step="100"
             value={mrtDistance}
             onChange={(e) => setMrtDistance(parseInt(e.target.value))}
-            className="w-full"
+            className="w-full appearance-none h-2 rounded-lg bg-orange-200 
+               accent-orange-500"
+            style={{
+              background: `linear-gradient(to right, #f97316 ${(mrtDistance - 100) / 19}%, #FFCC80 ${(mrtDistance - 100) / 19}%)`,
+            }}
           />
           <div className="flex justify-between text-xs">
             <span>{mrtDistance}m</span>
@@ -44,9 +48,13 @@ export default function Transport() {
             step="50"
             value={busStopDistance}
             onChange={(e) => setBusStopDistance(parseInt(e.target.value))}
-            className="w-full"
+            className="w-full appearance-none h-2 rounded-lg bg-orange-200 
+               accent-orange-500"
+            style={{
+              background: `linear-gradient(to right, #f97316 ${(busStopDistance - 50) / 9.5}%, #FFCC80 ${(busStopDistance - 50) / 9.5}%)`,
+            }}
           />
-          <div className="flex justify-between text-xs">
+          <div className="flex justify-between text-xs bg-orange">
             <span>{busStopDistance}m</span>
           </div>
         </div>

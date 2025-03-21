@@ -28,7 +28,11 @@ export default function Shopping() {
                         step="100"
                         value={distance}
                         onChange={(e) => setDistance(parseInt(e.target.value))}
-                        className="w-full"
+                        className="w-full appearance-none h-2 rounded-lg bg-orange-200 
+                            accent-orange-500"
+                        style={{
+                            background: `linear-gradient(to right, #f97316 ${(distance - 100) / 19}%, #FFCC80 ${(distance - 100) / 19}%)`,
+                        }}
                     />
                     <div className="flex justify-between text-xs">
                         <span>{distance}m</span>
