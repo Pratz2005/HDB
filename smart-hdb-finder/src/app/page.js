@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-[url(/hdb_landing_page.jpg)] bg-cover bg-center text-white">
+    <main className="relative min-h-screen bg-[url('../public/hdb_landing_page.jpg')] bg-cover bg-center text-white">
       {/* Semi-transparent overlay for readability */}
       <div className="absolute inset-0 bg-black/70"></div>
 
