@@ -21,7 +21,8 @@ export default function Sidebar() {
   };
 
   return (
-    <div className="w-80 bg-white shadow-md border-r p-4 h-screen overflow-y-auto">
+    <div className="w-[300px] bg-white shadow-md border-r p-4 h-screen overflow-y-auto"
+      style ={{scrollbarGutter: 'stable'}}>
       {/* HDB Type Selection */}
       <div className="mb-4 text-black">
         <h2 className="text-lg font-semibold mb-2">HDB Type</h2>
@@ -71,7 +72,7 @@ export default function Sidebar() {
             <span>{openSections[section.name] ? "▲" : "▼"}</span>
           </button>
           {openSections[section.name] && (
-            <div className="p-2 text-gray-600 text-sm">{section.component}</div>
+            <div className="p-2 text-gray-600 text-sm w-full">{section.component}</div>
           )}
         </div>
       ))}
