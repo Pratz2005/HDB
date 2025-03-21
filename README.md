@@ -1,45 +1,6 @@
 # Project Setup Guide
 
 ### Project Folder Structure
-smart-hdb-finder/
-│
-├── src/app/
-│   ├── api/ (API routes -> controllers for the API)
-│   ├── auth/
-│   ├── dashboard/
-│   ├── register/
-│   ├── utils/
-│   ├── components/ (reusable components)
-│   ├── public/
-│   ├── favicon.ico
-│   ├── globals.css
-│   ├── layout.js
-│   ├── page.js
-│
-├── controller/ (backend)
-│   ├── OneMap_token_auth.py (hide token auth from frontend)
-│   ├── db_conn.py
-│
-├── model/
-│   └── (files related to ML model)
-│
-├── node_modules/
-│   └── (Node.js modules)
-│
-├── venv/
-│   └── (virtual environment files)
-│
-├── .gitignore
-├── .env
-├── .env.example
-├── .eslint.config.mjs
-├── .next.config.mjs
-├── package-lock.json
-├── package.json
-├── postcss.config.mjs
-├── requirements.txt
-├── tailwind.config.mjs
-└── README.md
 
 ## Getting Started
 To ensure a smooth development workflow, please follow these steps before coding:
