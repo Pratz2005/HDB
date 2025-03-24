@@ -120,6 +120,8 @@ chore: other changes that don't modify src or test files
 | `npm run dev:api`      | Starts FastAPI backend server            |
 | `npm run dev:token`    | OneMap API Token Authentication          |
 | `npm run dev:db`       | Tests database connection                |
+| `npm run dev:frontend` | Runs website and authenticates token     |
+
 ### 💡 Important Notes:
 - Make sure your **virtual environment is activated** before running `dev:api` or `dev:db`.
 - Ensure you are in the correct directory (`smart-hdb-finder`) before running these scripts.
