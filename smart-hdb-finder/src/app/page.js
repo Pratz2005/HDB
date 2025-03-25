@@ -1,9 +1,12 @@
 // app/page.js
 "use client";
-import { buttonVariants } from "@/components/ui/button" //this is a shadcn component!
+import { buttonVariants } from "@/components/ui/button"; //this is a shadcn component!
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { continueAsGuest } from "./utils/authUtil.js"; // Import from new file
 
 export default function Home() {
+  const router = useRouter();
   return (
     <main className="relative min-h-screen bg-[url('/hdb_landing_page.jpg')] bg-cover bg-center text-white">
       {/* Semi-transparent overlay for readability */}
@@ -30,7 +33,12 @@ export default function Home() {
           </div>
         </div>
         <div className="flex mt-4 -ml-12 w-60">
-          <Link href="/dashboard" className={buttonVariants({ variant: "main" })}>Continue As Guest</Link>
+          <button
+            onClick={() => continueAsGuest(router)}
+            className={buttonVariants({ variant: "main" })}
+          >
+            Continue As Guest
+          </button>
         </div>
       </div>
     </main>

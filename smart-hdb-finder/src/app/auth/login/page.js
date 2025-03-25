@@ -2,9 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { auth } from "../../utils/firebaseClient.js";
 import { FaGoogle, FaUser } from "react-icons/fa";
+import { loginWithEmail, loginWithGoogle, continueAsGuest } from "../../utils/authUtil.js";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -15,32 +14,18 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      console.log("Logged in:", userCredential.user);
-      
-      // Redirect user here:
-      router.push("/dashboard");
-    } catch (error) {
+      await loginWithEmail(email, password, router);
+    } catch (err) {
       setError("Invalid email or password.");
     }
   };
 
   const handleGoogleLogin = async () => {
     try {
-      const provider = new GoogleAuthProvider();
-      const result = await signInWithPopup(auth, provider);
-      console.log("Logged in with Google:", result.user);
-
-      // Redirect user here:
-      router.push("/dashboard");
-    } catch (error) {
-      console.error("Google login error:", error);
+      await loginWithGoogle(router);
+    } catch (err) {
+      // Optionally handle error here
     }
-  };
-
-  const continueAsGuest = () => {
-    // Redirect user here:
-    router.push("/dashboard");
   };
 
   return (
@@ -99,7 +84,7 @@ export default function Login() {
           </div>
           <div className="my-4 text-center">
             <button
-              onClick={continueAsGuest}
+              onClick={() => continueAsGuest(router)}
               className="w-full flex items-center justify-center bg-gray-500 hover:bg-gray-700 py-2 rounded-lg transition text-white"
             >
               <FaUser className="mr-2" /> Continue as Guest
