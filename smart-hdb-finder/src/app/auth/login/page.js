@@ -6,8 +6,6 @@ import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 
 import { auth } from "../../utils/firebaseClient.js";
 import { FaGoogle, FaUser } from "react-icons/fa";
 
-import { Button } from "@/components/ui/button"
-
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -74,13 +72,12 @@ export default function Login() {
                 Forgot password?
               </a>
             </div>
-            {/* <button
+            <button
               type="submit"
               className="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-700 transition"
             >
               Log In
-            </button> */}
-            <Button type="submit" variant="forms">Log In</Button>
+            </button>
             <div className="text-center text-sm mt-2 text-gray-600">
               Don't have an account? <a href="/auth/register" className="text-indigo-600 hover:underline">Sign up</a>
             </div>

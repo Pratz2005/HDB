@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-[url('../public/hdb_landing_page.jpg')] bg-cover bg-center text-white">
+    <main className="relative min-h-screen bg-[url('/hdb_landing_page.jpg')] bg-cover bg-center text-white">
       {/* Semi-transparent overlay for readability */}
       <div className="absolute inset-0 bg-black/70"></div>
 
@@ -22,10 +22,14 @@ export default function Home() {
         </h1>
 
         <div className="flex gap-10 -ml-12">
-          <Link href="/auth/login" className={buttonVariants({ variant: "main" })}>Login</Link>
-          <Link href="/auth/register" className={buttonVariants({ variant: "main" })}>Create Account</Link>
+          <div className="w-60">
+            <Link href="/auth/login" className={`${buttonVariants({ variant: "main" })} block`}>Login</Link>
+          </div>
+          <div className="w-60">
+            <Link href="/auth/register" className={`${buttonVariants({ variant: "main" })} block`}>Create Account</Link>
+          </div>
         </div>
-        <div className="flex mt-4 -ml-12">
+        <div className="flex mt-4 -ml-12 w-60">
           <Link href="/dashboard" className={buttonVariants({ variant: "main" })}>Continue As Guest</Link>
         </div>
       </div>
