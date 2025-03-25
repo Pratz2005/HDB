@@ -1,28 +1,26 @@
 "use client"; 
 import { useState } from "react";
 import PriceRange from "./priceRange";
-import Transport from "./transport";
-import Lifestyle from "./lifestyle";
-import Education from "./education";
-import Healthcare from "./healthcare";
-import Shopping from "./shopping";
-import Finance from "./finance";
-import Family from "./family";
 
 export default function Sidebar() {
-  const [openSections, setOpenSections] = useState({});
+  const [toggles, setToggles] = useState({
+    communityClub: false,
+    hawkerCentre: false,
+    superMarket: false,
+    mrtStation: false,
+    clinics: false,
+  });
 
-  // Function to toggle sections open/close
-  const toggleSection = (section) => {
-    setOpenSections((prev) => ({
+  const toggleSwitch = (key) => {
+    setToggles((prev) => ({
       ...prev,
-      [section]: !prev[section],
+      [key]: !prev[key],
     }));
   };
 
   return (
     <div className="w-[300px] bg-white shadow-md border-r p-4 h-screen overflow-y-auto"
-      style ={{scrollbarGutter: 'stable'}}>
+         style={{ scrollbarGutter: 'stable' }}>
       {/* HDB Type Selection */}
       <div className="mb-4 text-black">
         <h2 className="text-lg font-semibold mb-2">HDB Type</h2>
@@ -33,8 +31,10 @@ export default function Sidebar() {
         </div>
       </div>
 
-      <PriceRange/ >
+      {/* Price Range Filter */}
+      <PriceRange />
 
+      {/* HDB Flat Type */}
       <div className="mb-4">
         <label htmlFor="hdb-flat-type" className="text-lg font-semibold text-black">
           HDB Flat Type
@@ -53,29 +53,32 @@ export default function Sidebar() {
         </select>
       </div>
 
-      {/* Dropdown Sections */}
-      {[
-        { name: "Transport", component: <Transport /> },
-        { name: "Education", component: <Education /> },
-        { name: "Healthcare", component: <Healthcare /> },
-        { name: "Shopping & Dining", component: <Shopping /> },
-        { name: "Lifestyle & Recreation", component: <Lifestyle/> },
-        { name: "Financial Services", component: <Finance/> },
-        { name: "Family & Elder Care", component: <Family/> },
-      ].map((section) => (
-        <div key={section.name} className="mb-2">
-          <button
-            className="w-full text-left text-gray-600 p-3 border-b border-gray-200 flex justify-between items-center bg-transparent focus:outline-none"
-            onClick={() => toggleSection(section.name)}
-          >
-            {section.name}
-            <span>{openSections[section.name] ? "▲" : "▼"}</span>
-          </button>
-          {openSections[section.name] && (
-            <div className="p-2 text-gray-600 text-sm w-full">{section.component}</div>
-          )}
-        </div>
-      ))}
+      <div className="mt-6">
+        <h2 className="text-lg font-semibold text-black mb-4">Nearby Amenities</h2>
+        {[
+          { label: "Community Club", key: "communityClub" },
+          { label: "Hawker Centre", key: "hawkerCentre" },
+          { label: "Super Market", key: "superMarket" },
+          { label: "MRT Station", key: "mrtStation" },
+          { label: "Clinics", key: "clinics" },
+        ].map((item) => (
+          <div key={item.key} className="flex justify-between items-center mb-4">
+            <span className="text-gray-700">{item.label}</span>
+            <button
+              onClick={() => toggleSwitch(item.key)}
+              className={`w-12 h-6 flex items-center rounded-full p-1 transition-colors duration-300 ${
+                toggles[item.key] ? "bg-green-500" : "bg-gray-300"
+              }`}
+            >
+              <div
+                className={`w-4 h-4 bg-white rounded-full shadow-md transform transition-transform duration-300 ${
+                  toggles[item.key] ? "translate-x-6" : "translate-x-0"
+                }`}
+              />
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
