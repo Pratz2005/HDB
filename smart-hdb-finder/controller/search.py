@@ -3,8 +3,9 @@ import requests
 from fastapi import APIRouter, HTTPException
 from typing import List
 
-from .model import HDBRecord, HDBSearchParams, MRTStation, Supermarket, Hawker, CommunityClub, CHASClinic
-from .optionalFilter import meets_toggle_criteria
+from .model.HDBSearchParams import HDBSearchParams
+from .model.HDBRecord import HDBRecord
+from .optionalFilters import meets_toggle_criteria
 
 router = APIRouter()
 
@@ -42,17 +43,19 @@ def process_data(data, min_price, max_price, toggles) -> dict:
     if "result" in data and "records" in data["result"]:
         records = data["result"]["records"]
         filtered_records: List[HDBRecord] = []
+        
+        print("Toggles:", toggles)
         for record in records:
             try:
                 record_obj = HDBRecord(**record)
-                # Basic price filtering.
+                
                 if not (min_price <= record_obj.resale_price <= max_price):
                     continue
 
                 # If any amenity toggle is switched on, check for nearby amenities.
-                if any(toggles.values()):
-                    if not meets_toggle_criteria(record_obj, toggles):
-                        continue
+                # if any(toggles.values()):
+                #     if not meets_toggle_criteria(record_obj, toggles):
+                #         continue
 
                 filtered_records.append(record_obj)
             except Exception:

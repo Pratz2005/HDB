@@ -1,11 +1,28 @@
 from math import radians, sin, cos, asin, sqrt
-from typing import List
+from typing import List, Any, Tuple, Type
+import os
 import pygeohash as pgh
 import firebase_admin
 from firebase_admin import firestore, credentials
-from .model import HDBRecord, HDBSearchParams, MRTStation, Supermarket, Hawker, CommunityClub, CHASClinic
+from .model.HDBRecord import HDBRecord
+from .model.MRTStation import MRTStation
+from .model.Supermarket import Supermarket
+from .model.Hawker import Hawker
+from .model.CommunityClub import CommunityClub
+from .model.CHASClinic import CHASClinic
+from .onemap import get_lat_lon_from_onemap
 
-cred = credentials.Certificate("smart-hdb-finder-firebase-adminsdk-fbsvc-7384d88d6e.json")
+import logging
+logging.basicConfig(
+    level=logging.INFO,  # Set the logging level to INFO
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",  # Format for logs
+)
+logger = logging.getLogger("controller.main")
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+cred_file = os.path.join(BASE_DIR, "smart-hdb-finder-firebase-adminsdk-fbsvc-7384d88d6e.json")
+
+cred = credentials.Certificate(cred_file)
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
@@ -23,7 +40,9 @@ AMENITY_MAP = {
 #####################################
 def get_geohash_prefix(lat: float, lon: float, length: int = 5) -> str:
     full_hash = pgh.encode(lat, lon)
-    return full_hash[:length]
+    prefix = full_hash[:length]
+    logger.info("Generated full geohash: %s, prefix: %s", full_hash, prefix)
+    return prefix
 
 def calculate_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     """
@@ -45,9 +64,10 @@ def fetch_amenities_by_type(amenity_key: str, geohash_prefix: str) -> List[Any]:
     
     Returns a list of instances of the corresponding Pydantic model.
     """
+    logger.info("fetch_amenities_by_type called with amenity_key: %s, geohash_prefix: %s", amenity_key, geohash_prefix)
     if amenity_key not in AMENITY_MAP:
         return []
-    collection, model: (str, Type) = AMENITY_MAP[amenity_key]
+    collection, model = AMENITY_MAP[amenity_key]
     query = db.collection(collection).where("geohash", ">=", geohash_prefix).where("geohash", "<", geohash_prefix + "z")
     results = [doc.to_dict() for doc in query.stream()]
     return [model(**data) for data in results]
@@ -63,15 +83,22 @@ def meets_toggle_criteria(record_obj, toggles) -> bool:
     
     Returns True if at least one candidate was found within range.
     """
+    logger.info("meets_toggle_criteria called with record_obj: %s, toggles: %s", record_obj, toggles)
     record_obj.nearby_amenities = []
-    hdb_prefix = get_geohash_prefix(record_obj.latitude, record_obj.longitude, length=5)
+    hdb_address = record_obj.block + " " + record_obj.street_name
+    hdb_latitude, hdb_longitude = get_lat_lon_from_onemap(hdb_address)
+    hdb_prefix = get_geohash_prefix(hdb_latitude, hdb_longitude, length=5)
     
     for amenity_key, is_enabled in toggles.items():
+        logger.info("Inside loop for key: %s", amenity_key)
+        logger.info("Checking toggle for %s: %s", amenity_key, is_enabled)
         if is_enabled:
             candidates = fetch_amenities_by_type(amenity_key, hdb_prefix)
+            logger.info("Candidates for %s: %s", amenity_key, candidates)
             for candidate in candidates:
-                dist = calculate_distance(record_obj.latitude, record_obj.longitude,
-                                          candidate.latitude, candidate.longitude)
+                dist = calculate_distance(hdb_latitude, hdb_longitude,
+                                        candidate.latitude, candidate.longitude)
+                logger.info("Distance to %s: %s km", candidate.name, dist)
                 if dist <= 1.0:
                     record_obj.nearby_amenities.append(candidate.name)
     

@@ -1,5 +1,5 @@
 "use client"; 
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import PriceRangeSlider from "./priceRange";
 import { locationOptions, flatTypeOptions } from "./dropdownOptions";
 
@@ -40,6 +40,10 @@ export default function Sidebar() {
       [key]: !prev[key],
     }));
   };
+
+  useEffect(() => {
+    console.log("Toggles updated:", toggles);
+  }, [toggles]);
 
   /////////////////////////
   // API CALL FOR SEARCH //

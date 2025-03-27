@@ -5,3 +5,5 @@ class HDBRecord(BaseModel):
     town: str
     flat_type: str
     month: str
+    block: str
+    street_name: str
