@@ -16,7 +16,10 @@ def search_hdb(params: HDBSearchParams):
                   "2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12"]
     }
     resource_id = "d_8b84c4ee58e3cfc0ece0d773c8ca6abc"
-    url = "https://data.gov.sg/api/action/datastore_search?resource_id=" + resource_id  + "&filters=" + json.dumps(filters) + "&limit=1000" + "&sort=resale_price"
+        url = ("https://data.gov.sg/api/action/datastore_search?resource_id=" + resource_id +
+           "&filters=" + json.dumps(filters) +
+           "&limit=1000" +
+           "&sort=resale_price")
     
     try:
         response = requests.get(url)
