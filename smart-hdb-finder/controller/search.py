@@ -24,7 +24,7 @@ def search_hdb(params: HDBSearchParams):
     resource_id = "d_8b84c4ee58e3cfc0ece0d773c8ca6abc"
     url = ("https://data.gov.sg/api/action/datastore_search?resource_id=" + resource_id +
            "&filters=" + json.dumps(filters) +
-           "&limit=1000" +
+           "&limit=500" +
            "&sort=resale_price")
     
     try:
@@ -36,6 +36,7 @@ def search_hdb(params: HDBSearchParams):
         raise HTTPException(status_code=500, detail="Failed to fetch data")
     
     data = response.json()
+    print(data)
     processed = process_data(data, params.min_price, params.max_price, params.toggles)
     return processed
 
@@ -43,21 +44,28 @@ def process_data(data, min_price, max_price, toggles) -> dict:
     if "result" in data and "records" in data["result"]:
         records = data["result"]["records"]
         filtered_records: List[HDBRecord] = []
+        seen_addresses = set()
         
         print("Toggles:", toggles)
         for record in records:
             try:
                 record_obj = HDBRecord(**record)
                 
+                address = record_obj.block + " " + record_obj.street_name
+                if address in seen_addresses:
+                    continue # already sorted by price, so skip more expensive flats in same location
+                
                 if not (min_price <= record_obj.resale_price <= max_price):
                     continue
 
                 # If any amenity toggle is switched on, check for nearby amenities.
-                # if any(toggles.values()):
-                #     if not meets_toggle_criteria(record_obj, toggles):
-                #         continue
+                if any(toggles.values()):
+                    if not meets_toggle_criteria(record_obj, toggles):
+                        continue
 
                 filtered_records.append(record_obj)
+                if len(filtered_records) >= 10:
+                    break
             except Exception:
                 continue
         return {

@@ -1,9 +1,7 @@
 import requests
-      
-url = "https://www.onemap.gov.sg/api/common/elastic/search?searchVal=5 MARSILING DRIVE&returnGeom=Y&getAddrDetails=Y&pageNum=1"
-      
-headers = {"Authorization": "Bearer **********************"}
-      
-response = requests.get(url, headers=headers)
-      
-print(response.text)
+          
+dataset_id = "d_8b84c4ee58e3cfc0ece0d773c8ca6abc"
+url = "https://data.gov.sg/api/action/datastore_search?resource_id="  + dataset_id
+        
+response = requests.get(url)
+print(response.json())

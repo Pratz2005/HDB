@@ -10,12 +10,12 @@ from .model.Supermarket import Supermarket
 from .model.Hawker import Hawker
 from .model.CommunityClub import CommunityClub
 from .model.CHASClinic import CHASClinic
-from .onemap import get_lat_lon_from_onemap
+from .oneMap import get_lat_lon_from_onemap
 
 import logging
 logging.basicConfig(
     level=logging.INFO,  # Set the logging level to INFO
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",  # Format for logs
+    format="%(message)s",  # Format for logs
 )
 logger = logging.getLogger("controller.main")
 
@@ -38,10 +38,9 @@ AMENITY_MAP = {
 #####################################
 # Helper functions 
 #####################################
-def get_geohash_prefix(lat: float, lon: float, length: int = 5) -> str:
+def get_geohash_prefix(lat: float, lon: float, length: int = 6) -> str:
     full_hash = pgh.encode(lat, lon)
     prefix = full_hash[:length]
-    logger.info("Generated full geohash: %s, prefix: %s", full_hash, prefix)
     return prefix
 
 def calculate_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
@@ -64,7 +63,6 @@ def fetch_amenities_by_type(amenity_key: str, geohash_prefix: str) -> List[Any]:
     
     Returns a list of instances of the corresponding Pydantic model.
     """
-    logger.info("fetch_amenities_by_type called with amenity_key: %s, geohash_prefix: %s", amenity_key, geohash_prefix)
     if amenity_key not in AMENITY_MAP:
         return []
     collection, model = AMENITY_MAP[amenity_key]
@@ -77,29 +75,30 @@ def fetch_amenities_by_type(amenity_key: str, geohash_prefix: str) -> List[Any]:
 #####################################
 
 def meets_toggle_criteria(record_obj, toggles) -> bool:
-    """
-    For each enabled amenity toggle in 'toggles', fetch the corresponding amenities
-    and, if any candidate is within 1 km of the record, add its name to record_obj.nearby_amenities.
-    
-    Returns True if at least one candidate was found within range.
-    """
-    logger.info("meets_toggle_criteria called with record_obj: %s, toggles: %s", record_obj, toggles)
     record_obj.nearby_amenities = []
     hdb_address = record_obj.block + " " + record_obj.street_name
-    hdb_latitude, hdb_longitude = get_lat_lon_from_onemap(hdb_address)
-    hdb_prefix = get_geohash_prefix(hdb_latitude, hdb_longitude, length=5)
     
-    for amenity_key, is_enabled in toggles.items():
-        logger.info("Inside loop for key: %s", amenity_key)
-        logger.info("Checking toggle for %s: %s", amenity_key, is_enabled)
-        if is_enabled:
-            candidates = fetch_amenities_by_type(amenity_key, hdb_prefix)
-            logger.info("Candidates for %s: %s", amenity_key, candidates)
-            for candidate in candidates:
-                dist = calculate_distance(hdb_latitude, hdb_longitude,
-                                        candidate.latitude, candidate.longitude)
-                logger.info("Distance to %s: %s km", candidate.name, dist)
-                if dist <= 1.0:
-                    record_obj.nearby_amenities.append(candidate.name)
+    try:
+        hdb_latitude, hdb_longitude = get_lat_lon_from_onemap(hdb_address)
+        
+        hdb_prefix = get_geohash_prefix(hdb_latitude, hdb_longitude)
+        
+        for amenity_key, is_enabled in toggles.items():
+            if is_enabled:
+                try:
+                    candidates = fetch_amenities_by_type(amenity_key, hdb_prefix)
+                    
+                    for candidate in candidates:
+                        dist = calculate_distance(hdb_latitude, hdb_longitude,
+                                                candidate.latitude, candidate.longitude)
+                        logger.info(f"Distance to {candidate.name}: {dist:.2f} km")
+                        if dist <= 1.0:
+                            record_obj.nearby_amenities.append(candidate.name)
+                except Exception as e:
+                    logger.error(f"Error fetching amenities for {amenity_key}: {e}")
+        
+        return len(record_obj.nearby_amenities) > 0
     
-    return len(record_obj.nearby_amenities) > 0
+    except Exception as e:
+        logger.error(f"Error in meets_toggle_criteria: {e}")
+        return False

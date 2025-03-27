@@ -1,6 +1,7 @@
 import requests
 from fastapi import APIRouter, HTTPException
 import logging
+import os
 
 logger = logging.getLogger("controller.main")
 router = APIRouter()
@@ -10,7 +11,8 @@ def get_lat_lon_from_onemap(address: str) -> tuple:
     Query OneMap API to get latitude and longitude for the given address.
     """
     url = f"https://www.onemap.gov.sg/api/common/elastic/search?searchVal={address}&returnGeom=Y&getAddrDetails=Y&pageNum=1"
-    headers = {"Authorization": "Bearer **********************"}  # Replace with your OneMap API key
+    bearer = os.getenv("ACCESS_TOKEN")
+    headers = {"Authorization": f"Bearer {bearer}"}
     
     logger.info("Querying OneMap API with address: %s", address)
     response = requests.get(url, headers=headers)
@@ -41,4 +43,4 @@ def get_coordinates(address: str):
     API endpoint to query OneMap API for coordinates given an address string.
     """
     lat, lon = get_lat_lon_from_onemap(address)
-    return {"latitude": lat, "longitude": lon}
+    return lat, lon
