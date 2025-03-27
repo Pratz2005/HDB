@@ -38,7 +38,7 @@ AMENITY_MAP = {
 
 class AmenityQueryCache:
     @staticmethod
-    @lru_cache(maxsize=100)
+    @lru_cache(maxsize=3000)
     def fetch_cached_amenities(amenity_key: str, geohash_prefix: str) -> List[Any]:
         """
         Cached version of fetch_amenities_by_type with LRU caching
