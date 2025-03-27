@@ -110,16 +110,6 @@ export default function Sidebar() {
       {/* Price Range Filter */}
       <PriceRangeSlider onPriceChange={handlePriceChange} />
 
-      {/* Search Button */}
-      <div className="mt-6">
-        <button
-          onClick={handleSearch}
-          className="w-full bg-orange-500 hover:bg-orange-700 text-white py-2 rounded-lg transition"
-        >
-          Search
-        </button>
-      </div>
-
       <div className="mt-6">
         <h2 className="text-lg font-semibold text-black mb-4">Nearby Amenities</h2>
         {[
@@ -145,6 +135,16 @@ export default function Sidebar() {
             </button>
           </div>
         ))}
+      </div>
+
+      {/* Search Button */}
+      <div className="mt-6">
+        <button
+          onClick={handleSearch}
+          className="w-full bg-orange-500 hover:bg-orange-700 text-white py-2 rounded-lg transition"
+        >
+          Search
+        </button>
       </div>
 
       {/* (Optional) Show search results in the Sidebar */}
