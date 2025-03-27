@@ -64,7 +64,7 @@ def process_data(data, min_price, max_price, toggles) -> dict:
                         continue
 
                 filtered_records.append(record_obj)
-                if len(filtered_records) >= 10:
+                if len(filtered_records) >= 5:
                     break
             except Exception:
                 continue
