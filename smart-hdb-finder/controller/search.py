@@ -49,4 +49,4 @@ def process_data(data, min_price, max_price):
                 continue
         return {"number of records": len(filtered_records), 
                 "records": filtered_records}
-    return {"number of records: 0", records": []}
+    return {"number of records": 0, "records": []}

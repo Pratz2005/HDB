@@ -1,8 +1,56 @@
 "use client"; 
-import { useState } from "react";
-import PriceRange from "./priceRange";
+import { useCallback, useState } from "react";
+import PriceRangeSlider from "./priceRange";
 
 export default function Sidebar() {
+  const [location, setLocation] = useState("");
+  const [flatType, setFlatType] = useState("");
+  // State for price range (min and max)
+  const [priceRange, setPriceRange] = useState({ minPrice: 300000, maxPrice: 750000 });
+  // This state can hold search results (if you wish to display them later)
+  const [searchResults, setSearchResults] = useState(null);
+
+  // Callback to update price range from PriceRangeSlider
+  const handlePriceChange = useCallback((min, max) => {
+    setPriceRange({ minPrice: min, maxPrice: max });
+  }, []);
+  const handleLocationChange = (e) => {
+    setLocation(e.target.value);
+  };
+
+  const handleFlatTypeChange = (e) => {
+    setFlatType(e.target.value);
+  };
+
+  // API CALL TO SEARCH
+  const handleSearch = async () => {
+    const payload = {
+      location: location,
+      flat_type: flatType,
+      min_price: priceRange.minPrice,
+      max_price: priceRange.maxPrice,
+    };
+
+    try {
+      const res = await fetch("http://127.0.0.1:8000/api/search", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        throw new Error("Search request failed");
+      }
+      const data = await res.json();
+      console.log("Search Results:", data);
+      setSearchResults(data);
+    } catch (error) {
+      console.error("Error fetching search results:", error);
+    }
+  };
+
   const [toggles, setToggles] = useState({
     communityClub: false,
     hawkerCentre: false,
@@ -19,20 +67,25 @@ export default function Sidebar() {
   };
 
   return (
-    <div className="w-[300px] bg-white shadow-md border-r p-4 h-screen overflow-y-auto"
-         style={{ scrollbarGutter: 'stable' }}>
-      {/* HDB Type Selection */}
-      <div className="mb-4 text-black">
-        <h2 className="text-lg font-semibold mb-2">HDB Type</h2>
-        <div className="flex space-x-2">
-          <button className="px-4 py-2 border-2 border-orange-500 text-orange-500 rounded-lg font-semibold hover:bg-blue-100 transition">Resale</button>
-          <button className="px-4 py-2 border-2 border-orange-500 text-orange-500 rounded-lg font-semibold hover:bg-blue-100 transition">BTO</button>
-          <button className="px-4 py-2 border-2 border-orange-500 text-orange-500 rounded-lg font-semibold hover:bg-blue-100 transition">Rental</button>
-        </div>
+    <div className="w-[300px] bg-white shadow-md border-r p-4 h-screen overflow-y-auto" style={{ scrollbarGutter: 'stable' }}>
+      {/* Location Selection */}
+      <div className="mb-4">
+        <label htmlFor="location" className="text-lg font-semibold text-black">
+          Location
+        </label>
+        <select
+          id="location"
+          value={location}
+          onChange={handleLocationChange}
+          className="mt-1 block w-full p-2 border border-blue-400 rounded-md shadow-sm text-gray-600 focus:ring-blue-500 focus:border-blue-500"
+        >
+          <option value="">Select</option>
+          <option value="ANG MO KIO">Ang Mo Kio</option>
+          <option value="BEDOK">Bedok</option>
+          <option value="TOA PAYOH">Toa Payoh</option>
+          {/* Add more locations as needed */}
+        </select>
       </div>
-
-      {/* Price Range Filter */}
-      <PriceRange />
 
       {/* HDB Flat Type */}
       <div className="mb-4">
@@ -41,16 +94,32 @@ export default function Sidebar() {
         </label>
         <select
           id="hdb-flat-type"
+          value={flatType}
+          onChange={handleFlatTypeChange}
           className="mt-1 block w-full p-2 border border-blue-400 rounded-md shadow-sm text-gray-600 focus:ring-blue-500 focus:border-blue-500"
         >
           <option value="">Select</option>
-          <option value="2-room">2-Room</option>
-          <option value="3-room">3-Room</option>
-          <option value="4-room">4-Room</option>
-          <option value="5-room">5-Room</option>
-          <option value="executive-flats">Executive Flats</option>
-          <option value="community-care-apartments">Community Care Apartments</option>
+          <option value="1 ROOM">1-Room</option>
+          <option value="2 ROOM">2-Room</option>
+          <option value="3 ROOM">3-Room</option>
+          <option value="4 ROOM">4-Room</option>
+          <option value="5 ROOM">5-Room</option>
+          <option value="EXECUTIVE">Executive Flats</option>
+          <option value="MULTI-GENERATION">Multi-Generation</option>
         </select>
+      </div>
+
+      {/* Price Range Filter */}
+      <PriceRangeSlider onPriceChange={handlePriceChange} />
+
+      {/* Search Button */}
+      <div className="mt-6">
+        <button
+          onClick={handleSearch}
+          className="w-full bg-orange-500 hover:bg-orange-700 text-white py-2 rounded-lg transition"
+        >
+          Search
+        </button>
       </div>
 
       <div className="mt-6">
@@ -67,7 +136,7 @@ export default function Sidebar() {
             <button
               onClick={() => toggleSwitch(item.key)}
               className={`w-12 h-6 flex items-center rounded-full p-1 transition-colors duration-300 ${
-                toggles[item.key] ? "bg-green-500" : "bg-gray-300"
+                toggles[item.key] ? "bg-orange-500" : "bg-gray-300"
               }`}
             >
               <div
@@ -79,6 +148,14 @@ export default function Sidebar() {
           </div>
         ))}
       </div>
+
+      {/* (Optional) Show search results in the Sidebar */}
+      {searchResults && (
+        <div className="mt-6">
+          <h2 className="text-lg font-semibold text-black">Results:</h2>
+          <pre className="whitespace-pre-wrap text-sm">{JSON.stringify(searchResults, null, 2)}</pre>
+        </div>
+      )}
     </div>
   );
 }
