@@ -1,6 +1,7 @@
 "use client"; 
 import { useCallback, useState } from "react";
 import PriceRangeSlider from "./priceRange";
+import { locationOptions, flatTypeOptions } from "./dropdownOptions";
 
 export default function Sidebar() {
   const [location, setLocation] = useState("");
@@ -79,11 +80,11 @@ export default function Sidebar() {
           onChange={handleLocationChange}
           className="mt-1 block w-full p-2 border border-blue-400 rounded-md shadow-sm text-gray-600 focus:ring-blue-500 focus:border-blue-500"
         >
-          <option value="">Select</option>
-          <option value="ANG MO KIO">Ang Mo Kio</option>
-          <option value="BEDOK">Bedok</option>
-          <option value="TOA PAYOH">Toa Payoh</option>
-          {/* Add more locations as needed */}
+          {locationOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
         </select>
       </div>
 
@@ -98,14 +99,11 @@ export default function Sidebar() {
           onChange={handleFlatTypeChange}
           className="mt-1 block w-full p-2 border border-blue-400 rounded-md shadow-sm text-gray-600 focus:ring-blue-500 focus:border-blue-500"
         >
-          <option value="">Select</option>
-          <option value="1 ROOM">1-Room</option>
-          <option value="2 ROOM">2-Room</option>
-          <option value="3 ROOM">3-Room</option>
-          <option value="4 ROOM">4-Room</option>
-          <option value="5 ROOM">5-Room</option>
-          <option value="EXECUTIVE">Executive Flats</option>
-          <option value="MULTI-GENERATION">Multi-Generation</option>
+          {flatTypeOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
         </select>
       </div>
 
