@@ -9,14 +9,6 @@ If you have created an additional folder in your file system to store this GitHu
 ```sh
 cd smart-hdb-finder
 ```
-### 2. Navigate into the Frontend Folder
-Before installing dependencies, make sure you are inside the frontend folder:
-
-```sh
-cd frontend
-```
-⚠️ Note: npm install must be run in the frontend folder. Running it elsewhere (e.g., the root folder) will result in issues as the necessary package.json resides within the frontend directory.
-
 
 ### 3. Install Dependencies
 Run the following command to install all necessary dependencies and match the required versions:
