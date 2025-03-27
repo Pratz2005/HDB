@@ -1,17 +1,17 @@
 "use client"; 
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import PriceRangeSlider from "./priceRange";
 import { locationOptions, flatTypeOptions } from "./dropdownOptions";
 
 export default function Sidebar() {
+
+  ///////////////////////////////
+  // COMPULSORY SEARCH FILTERS //
+  ///////////////////////////////
   const [location, setLocation] = useState("");
   const [flatType, setFlatType] = useState("");
-  // State for price range (min and max)
   const [priceRange, setPriceRange] = useState({ minPrice: 300000, maxPrice: 750000 });
-  // This state can hold search results (if you wish to display them later)
   const [searchResults, setSearchResults] = useState(null);
-
-  // Callback to update price range from PriceRangeSlider
   const handlePriceChange = useCallback((min, max) => {
     setPriceRange({ minPrice: min, maxPrice: max });
   }, []);
@@ -23,13 +23,38 @@ export default function Sidebar() {
     setFlatType(e.target.value);
   };
 
-  // API CALL TO SEARCH
+  ///////////////////////////
+  // TOGGLES FOR AMENITIES //
+  ///////////////////////////
+  const [toggles, setToggles] = useState({
+    communityClub: false,
+    hawkerCentre: false,
+    superMarket: false,
+    mrtStation: false,
+    clinics: false,
+  });
+
+  const toggleSwitch = (key) => {
+    setToggles((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
+  };
+
+  useEffect(() => {
+    console.log("Toggles updated:", toggles);
+  }, [toggles]);
+
+  /////////////////////////
+  // API CALL FOR SEARCH //
+  /////////////////////////
   const handleSearch = async () => {
     const payload = {
       location: location,
       flat_type: flatType,
       min_price: priceRange.minPrice,
       max_price: priceRange.maxPrice,
+      toggles: toggles
     };
 
     try {
@@ -50,21 +75,6 @@ export default function Sidebar() {
     } catch (error) {
       console.error("Error fetching search results:", error);
     }
-  };
-
-  const [toggles, setToggles] = useState({
-    communityClub: false,
-    hawkerCentre: false,
-    superMarket: false,
-    mrtStation: false,
-    clinics: false,
-  });
-
-  const toggleSwitch = (key) => {
-    setToggles((prev) => ({
-      ...prev,
-      [key]: !prev[key],
-    }));
   };
 
   return (
