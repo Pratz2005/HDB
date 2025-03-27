@@ -6,7 +6,7 @@ export default function PriceRangeSlider({ onPriceChange }) {
   const [isDragging, setIsDragging] = useState(null); // 'min', 'max', or null
 
   const minAllowed = 100000;
-  const maxAllowed = 1000000;
+  const maxAllowed = 2000000;
   const step = 50000;
   const range = maxAllowed - minAllowed;
 

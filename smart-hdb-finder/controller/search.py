@@ -1,15 +1,11 @@
 import json
 import requests
 from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel
+from typing import List
+from .model.HDBRecord import HDBRecord
+from .model.HDBSearchParams import HDBSearchParams
 
 router = APIRouter()
-
-class HDBSearchParams(BaseModel):
-    location: str
-    flat_type: str
-    min_price: int
-    max_price: int
 
 @router.post("/api/search")
 def search_hdb(params: HDBSearchParams):
@@ -34,19 +30,20 @@ def search_hdb(params: HDBSearchParams):
     processed = process_data(data, params.min_price, params.max_price)
     return processed
 
-def process_data(data, min_price, max_price):
-    # Process records by filtering them by resale_price within the provided range.
+def process_data(data, min_price, max_price) -> dict:
     if "result" in data and "records" in data["result"]:
         records = data["result"]["records"]
-        filtered_records = []
+        filtered_records: List[HDBRecord] = []
         for record in records:
             try:
-                price = int(record["resale_price"])
-                if min_price <= price <= max_price:
-                    filtered_records.append(record)
+                record_obj = HDBRecord(**record)
+                if min_price <= record_obj.resale_price <= max_price:
+                    filtered_records.append(record_obj)
             except Exception:
                 # If conversion fails, skip the record.
                 continue
-        return {"number of records": len(filtered_records), 
-                "records": filtered_records}
+        return {
+            "number of records": len(filtered_records),
+            "records": filtered_records  # This will be serialized as a list of dicts
+        }
     return {"number of records": 0, "records": []}
