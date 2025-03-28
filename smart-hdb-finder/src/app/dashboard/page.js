@@ -1,5 +1,5 @@
 "use client"
-import Sidebar from "./sidebar"; 
+import SearchLayout from './SearchLayout';
 import React, { useState, useEffect } from 'react';
 import MapComponent from '../../components/map';
 import { Marker, Popup } from "react-leaflet"
@@ -37,7 +37,7 @@ export default function DashboardPage() {
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
-      <Sidebar />
+      <SearchLayout />
 
       {/* Main Content Area */}
       <div className="flex flex-col flex-grow px-4 pt-4 bg-gray-100">
