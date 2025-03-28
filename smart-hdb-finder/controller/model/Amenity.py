@@ -1,4 +1,5 @@
-from pydantic import BaseModel, root_validator
+from pydantic import BaseModel
+from typing import Any, Dict
 
 class Amenity(BaseModel):
     name: str
@@ -7,14 +8,12 @@ class Amenity(BaseModel):
     longitude: float
     geohash: str
 
-    @root_validator(pre=True)
-    def map_firestore_keys(cls, values):
+    @classmethod
+    def map_firestore_keys(cls, values: Dict[str, Any]) -> Dict[str, Any]:
         return {
-            "name": values.get("NAME"),
-            "postal": values.get("POSTAL_CD"),
-            "latitude": values.get("geopoint").latitude if "geopoint" in values else None,
-            "longitude": values.get("geopoint").longitude if "geopoint" in values else None,
-            "geohash": values.get("geohash"),
+            "name": values.get("NAME") or "",
+            "postal": values.get("POSTAL_CD") or "",
+            "latitude": values.get("geopoint").latitude if values.get("geopoint") else 0.0,
+            "longitude": values.get("geopoint").longitude if values.get("geopoint") else 0.0,
+            "geohash": values.get("geohash") or "",
         }
-
-# Now your specific models can inherit from Amenity.
