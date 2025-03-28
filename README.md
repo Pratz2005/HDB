@@ -82,7 +82,7 @@ This step is essential to ensure your API token is valid. If the token is expire
 ### Start the FastAPI Backend Server
 From within the `controller` directory:
 ```sh
-uvicorn main:app --reload
+uvicorn controller.main:app --reload
 ```
 
 - Access the API at: [http://127.0.0.1:8000](http://127.0.0.1:8000)  

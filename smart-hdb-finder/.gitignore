@@ -52,5 +52,5 @@ venv/
 .env.local
 .env.*.local
 
-# firebase
+# firestore credential
 controller/smart-hdb-finder-firebase-adminsdk-fbsvc-7384d88d6e.json

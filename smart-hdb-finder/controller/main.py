@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware 
 from .search import router as search_router
+from .oneMap import router as onemap_router
 
 app = FastAPI()
 
@@ -16,7 +17,8 @@ app.add_middleware(
 # Routing for search
 app.include_router(search_router)
 
-# Include other routes below in similar fashion
+# Routing for coordinates
+app.include_router(onemap_router)
 
 @app.get("/")
 def read_root():
