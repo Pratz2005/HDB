@@ -1,22 +1,16 @@
-from pydantic import BaseModel, root_validator
+from pydantic import root_validator
+from .Amenity import Amenity
 
-class Hawker(BaseModel):
-    name: str
-    postal: str
+class Hawker(Amenity):
     x_coordinate: float
     y_coordinate: float
-    latitude: float
-    longitude: float
-    geohash: str
-    
+
     @root_validator(pre=True)
-    def map_firestore_keys(cls, values):
-        return {
-            "name": values.get("NAME"),
-            "postal": values.get("POSTAL_CD"),
+    def map_extra_keys(cls, values):
+        # Call the base class validator explicitly to map common fields.
+        values = Amenity.map_firestore_keys.__func__(cls, values)
+        extras = {
             "x_coordinate": float(values.get("X_COORDINATE", 0)),
-            "y_coordinate": float(values.get("Y_COORDINATE", 0)),
-            "latitude": values.get("geopoint").latitude if "geopoint" in values else None,
-            "longitude": values.get("geopoint").longitude if "geopoint" in values else None,
-            "geohash": values.get("geohash"),
+            "y_coordinate": float(values.get("Y_COORDINATE", 0))
         }
+        return {**values, **extras}
