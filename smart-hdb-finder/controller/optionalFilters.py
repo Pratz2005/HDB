@@ -21,7 +21,7 @@ logging.basicConfig(
 logger = logging.getLogger("controller.main")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-cred_file = os.path.join(BASE_DIR, "smart-hdb-finder-firebase-adminsdk-fbsvc-7384d88d6e.json")
+cred_file = os.path.join(BASE_DIR, "firebase-key.json")
 
 cred = credentials.Certificate(cred_file)
 firebase_admin.initialize_app(cred)
