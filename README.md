@@ -116,13 +116,16 @@ chore: other changes that don't modify src or test files
 ### Configuration Files
 #### 1. .env Configuration
 Create a .env file in the root directory of the project (smart-hdb-finder/). For an example of the required environment variables, please refer to the .env.example file.
+
 The .env.example file contains all the necessary keys, but you will need to replace the placeholder values with your actual credentials.
+
 DO NOT commit your actual .env file to the repository as it contains sensitive data like API keys and passwords. The .env file should always be added to .gitignore to prevent it from being tracked by version control.
 
 #### 2. firebase-key.json File
-The firebase-key.json file should be placed in the /controller directory.
-It contains the Firebase service account credentials necessary for Firebase authentication. 
+The firebase-key.json file should be placed in the /controller directory. It contains the Firebase service account credentials necessary for Firebase authentication. 
+
 Ensure that firebase-key.json is added to .gitignore to prevent it from being exposed publicly.
+
 Refer to the firebase-example.json file for the required structure and values that need to be included in your firebase-key.json.
 
 Example:
