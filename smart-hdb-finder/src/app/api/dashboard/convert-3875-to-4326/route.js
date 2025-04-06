@@ -4,6 +4,10 @@ export async function GET(request) {
     const { searchParams } = new URL(request.url);
     const x = searchParams.get('x');
     const y = searchParams.get('y');
+
+    console.log("Received x:", x);
+    console.log("Received y:", y);
+    console.log("Auth token:", process.env.ACCESS_TOKEN); 
     const url = `https://www.onemap.gov.sg/api/common/convert/3857to4326?Y=${y}&X=${x}`;
 
     try {
@@ -15,6 +19,7 @@ export async function GET(request) {
         });
 
         const data = await response.json();
+        console.log(data);
         return new Response(JSON.stringify(data), {
             status: 200,
             headers: { 'Content-Type': 'application/json' },

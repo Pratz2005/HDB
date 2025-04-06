@@ -4,7 +4,7 @@ import os
 from dotenv import load_dotenv
 
 # Load environment variables from .env file located in the root folder
-env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '.env')
+env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'backend', '.env')
 load_dotenv(env_path) 
 
 # Read the expiry timestamp and access token from .env

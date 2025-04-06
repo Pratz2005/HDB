@@ -5,7 +5,7 @@ from firebase_admin import credentials, firestore
 import pygeohash as pgh
 
 # Initialize Firebase Admin SDK with your credentials
-cred = credentials.Certificate(".json")
+cred = credentials.Certificate("")
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
