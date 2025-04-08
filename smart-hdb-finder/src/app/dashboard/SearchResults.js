@@ -40,10 +40,10 @@ export default function SearchResults({ results }) {
 
           {expandedIndex === index && (
             <div className="px-4 py-3 bg-white border-t border-gray-200 rounded-b-lg text-sm text-gray-700 space-y-2">
-              <p><strong>Price:</strong> {record.resale_price}</p>
-              <p><strong>Flat Type:</strong> {record.flat_type}</p>
-              <p><strong>Block:</strong> {record.block}</p>
-              <p><strong>Street Name:</strong> {record.street_name}</p>
+              <p><strong>Postal Code:</strong> {record.postal}</p>
+              <p><strong>Floor Area (sqm):</strong> {record.floor_area_sqm}</p>
+              <p><strong>Remaining Lease:</strong> {record.remaining_lease}</p>
+              <p><strong>Date Sold:</strong> {record.month}</p>
               <p><strong>Nearby Amenities:</strong></p>
               <ul className="list-disc list-inside ml-4">
                 {record.nearby_amenities.map((amenity, i) => (
