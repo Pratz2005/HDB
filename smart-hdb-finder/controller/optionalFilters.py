@@ -1,17 +1,15 @@
 from math import radians, sin, cos, asin, sqrt
 from typing import List, Any, Tuple, Type
 from functools import lru_cache
-import os
-import pygeohash as pgh
-import firebase_admin
-from firebase_admin import firestore, credentials
+
 from .model.HDBRecord import HDBRecord
 from .model.MRTStation import MRTStation
 from .model.Supermarket import Supermarket
 from .model.Hawker import Hawker
 from .model.CommunityClub import CommunityClub
 from .model.CHASClinic import CHASClinic
-from .oneMap import get_lat_lon_from_onemap
+
+from .firebaseClient import db
 
 import logging
 logging.basicConfig(
@@ -19,13 +17,6 @@ logging.basicConfig(
     format="%(message)s",  # Format for logs
 )
 logger = logging.getLogger("controller.main")
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-cred_file = os.path.join(BASE_DIR, "firebase-key.json")
-
-cred = credentials.Certificate(cred_file)
-firebase_admin.initialize_app(cred)
-db = firestore.client()
 
 # Mapping of amenity keys to a tuple of (Firestore Collection Name, Pydantic Model)
 AMENITY_MAP = {
@@ -58,10 +49,6 @@ class AmenityQueryCache:
 #####################################
 # Helper functions 
 #####################################
-def get_geohash_prefix(lat: float, lon: float, length: int = 6) -> str:
-    full_hash = pgh.encode(lat, lon)
-    prefix = full_hash[:length]
-    return prefix
 
 def calculate_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     """
@@ -84,20 +71,18 @@ def meets_toggle_criteria(record_obj, toggles) -> bool:
     If any enabled amenity type has no candidate within 1 km, returns False.
     """
     record_obj.nearby_amenities = []
-    hdb_address = record_obj.block + " " + record_obj.street_name
 
     try:
-        hdb_latitude, hdb_longitude = get_lat_lon_from_onemap(hdb_address)
-        hdb_prefix = get_geohash_prefix(hdb_latitude, hdb_longitude)
+        hdb_geohash_prefix = record_obj.geohash[:6]
 
         for amenity_key, is_enabled in toggles.items():
             if is_enabled:
                 try:
-                    candidates = AmenityQueryCache.fetch_cached_amenities(amenity_key, hdb_prefix)
+                    candidates = AmenityQueryCache.fetch_cached_amenities(amenity_key, hdb_geohash_prefix)
                     # Filter candidates by distance threshold (1km)
                     matching_candidates = []
                     for candidate in candidates:
-                        dist = calculate_distance(hdb_latitude, hdb_longitude,
+                        dist = calculate_distance(record_obj.latitude, record_obj.longitude,
                                                   candidate.latitude, candidate.longitude)
                         logger.info(f"Distance to {candidate.name}: {dist:.2f} km")
                         if dist <= 1.0:

@@ -13,7 +13,6 @@ app.add_middleware(
     allow_headers=["*"],  # Allow all headers
 )
 
-
 # Routing for search
 app.include_router(search_router)
 

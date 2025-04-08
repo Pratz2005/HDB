@@ -56,4 +56,4 @@ venv/
 !.env.example
 
 # Firebase
-firebase-key.json
+controller/firebase-key.json
