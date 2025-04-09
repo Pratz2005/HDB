@@ -85,7 +85,7 @@ def meets_toggle_criteria(record_obj, toggles) -> bool:
                         dist = calculate_distance(record_obj.latitude, record_obj.longitude,
                                                   candidate.latitude, candidate.longitude)
                         logger.info(f"Distance to {candidate.name}: {dist:.2f} km")
-                        if dist <= 1.0:
+                        if dist <= 0.5: #within 500m
                             matching_candidates.append(candidate)
                     # If no candidates for this amenity type meet the threshold, return False
                     if not matching_candidates:
