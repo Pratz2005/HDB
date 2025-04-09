@@ -1,11 +1,68 @@
 "use client";
+
 import { useState } from "react";
+import { auth } from "../utils/firebaseClient";
+import { db } from "../utils/firebaseClient";
+import {
+  doc,
+  getDoc,
+  updateDoc,
+  setDoc,
+  serverTimestamp
+} from "firebase/firestore";
 
 export default function SearchResults({ results }) {
   const [expandedIndex, setExpandedIndex] = useState(null);
 
-  const toggleExpand = (index) => {
-    setExpandedIndex((prevIndex) => (prevIndex === index ? null : index));
+  const toggleExpand = async (index, record) => {
+    const newIndex = expandedIndex === index ? null : index;
+    setExpandedIndex(newIndex);
+  
+    if (newIndex !== null) {
+      const user = auth.currentUser;
+      if (user) {
+        const userRef = doc(db, "users", user.uid);
+        const listing = {
+          block: record.block,
+          street_name: record.street_name,
+          town: record.town,
+          flat_type: record.flat_type,
+          resale_price: record.resale_price,
+          postal: record.postal,
+          floor_area_sqm: record.floor_area_sqm,
+          remaining_lease: record.remaining_lease,
+          month: record.month,
+          nearby_amenities: record.nearby_amenities,
+          viewedAt: Date.now(), // keeps track of time viewed
+        };
+  
+        try {
+          const userDoc = await getDoc(userRef);
+          let prev = [];
+  
+          if (userDoc.exists()) {
+            const data = userDoc.data();
+            prev = data.recentlyViewed || [];
+          }
+  
+          // remove duplicate if same block & street name
+          const filtered = prev.filter(
+            (item) =>
+              !(
+                item.block === listing.block &&
+                item.street_name === listing.street_name
+              )
+          );
+  
+          // add new listing to top & keep only 15
+          const updated = [listing, ...filtered].slice(0, 15);
+  
+          await setDoc(userRef, { recentlyViewed: updated }, { merge: true });
+        } catch (error) {
+          console.error("Error saving recently viewed:", error);
+        }
+      }
+    }
   };
 
   if (!results || !results.records || results.records.length === 0) {
@@ -25,7 +82,7 @@ export default function SearchResults({ results }) {
         >
           <button
             className="w-full text-left px-4 py-3 flex justify-between items-center bg-gray-100 rounded-t-lg"
-            onClick={() => toggleExpand(index)}
+            onClick={() => toggleExpand(index, record)}
           >
             <div>
               <p className="text-lg font-semibold text-blue-700">
@@ -35,7 +92,9 @@ export default function SearchResults({ results }) {
                 {record.town} | {record.flat_type}
               </p>
             </div>
-            <p className="text-lg text-orange-500 font-bold">${record.resale_price.toLocaleString()}</p>
+            <p className="text-lg text-orange-500 font-bold">
+              ${record.resale_price.toLocaleString()}
+            </p>
           </button>
 
           {expandedIndex === index && (

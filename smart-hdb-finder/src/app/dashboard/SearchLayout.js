@@ -3,6 +3,7 @@ import { useState } from "react";
 import Sidebar from "./sidebar";
 import SearchResults from "./SearchResults";
 
+
 export default function SearchLayout() {
   const [searchResults, setSearchResults] = useState(null);
 

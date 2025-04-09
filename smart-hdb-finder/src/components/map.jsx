@@ -26,7 +26,7 @@ export default function MapComponent({ position, children }) {
             maxZoom={19} 
             minZoom={11}
             maxBounds={L.latLngBounds([1.144, 103.535], [1.494, 104.502])}
-            style={{ height: '100%', width: '100%' }}
+            style={{ height: '95%', width: '100%' }}
         >
         <TileLayer
             url='https://www.onemap.gov.sg/maps/tiles/Default/{z}/{x}/{y}.png'

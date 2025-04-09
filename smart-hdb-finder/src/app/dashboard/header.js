@@ -1,19 +1,33 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
+import HamburgerMenu from "../../components/Hamburger";
+
 export default function Header() {
   return (
-    <header className="w-full flex items-center justify-between px-4 py-2 border-b shadow-sm bg-white">
-      <div className="text-black font-semibold bg-gray-300 px-3 py-1 rounded">
-        Logo Here
-      </div>
-      <div className="flex items-center gap-4 bg-gray">
-        <button className="flex items-center gap-2 border-2 border-orange-500 text-orange-500 px-3 py-1 rounded-lg font-semibold hover:bg-orange-100 transition">
+    <header className="w-full flex items-center justify-between px-6 py-2 shadow-sm bg-orange-500">
+      {/* LEFT SIDE: Logo + Buttons */}
+      <div className="flex items-center gap-4">
+        <Link href="/">
+          <Image
+            src="/logo.png"
+            alt="Smart HDB Finder Logo"
+            width={60}
+            height={60}
+            className="object-contain"
+          />
+        </Link>
+        <button className="border-2 border-white text-white px-3 py-1 rounded-lg font-semibold hover:bg-orange-300 hover:text-white transition">
           Find myHDB!
         </button>
-        <div className="flex items-center text-gray-500 text-sm gap-1 cursor-pointer hover:text-gray-700">
+        <div className="text-white text-sm font-medium cursor-pointer hover:underline">
           HDB Market Watch
         </div>
       </div>
+
+      {/* RIGHT SIDE: Hamburger */}
+      <HamburgerMenu />
     </header>
   );
 }

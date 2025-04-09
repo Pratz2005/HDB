@@ -8,7 +8,7 @@ import { continueAsGuest } from "./utils/authUtil.js"; // Import from new file
 export default function Home() {
   const router = useRouter();
   return (
-    <main className="relative min-h-screen bg-[url('/hdb_landing_page.jpg')] bg-cover bg-center text-white">
+    <main className="relative bg-[url('/hdb_landing_page.jpg')] bg-cover bg-center text-white">
       {/* Semi-transparent overlay for readability */}
       <div className="absolute inset-0 bg-black/70"></div>
 
