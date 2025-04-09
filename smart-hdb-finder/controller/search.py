@@ -45,7 +45,7 @@ def process_data(data, toggles) -> dict:
                     if not meets_toggle_criteria(record_obj, toggles):
                         continue
                 filtered_records.append(record_obj)
-                if len(filtered_records) >= 5:
+                if len(filtered_records) >= 8:
                     break
             except Exception:
                 continue

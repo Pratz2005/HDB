@@ -22,7 +22,7 @@ logger = logging.getLogger("controller.main")
 AMENITY_MAP = {
     "mrtStation": ("mrt_stations", MRTStation),
     "clinics": ("clinic_locations", CHASClinic),
-    "hawkerCentre": ("hawkers_centres", Hawker),
+    "hawkerCentre": ("hawker_centres", Hawker),
     "communityClub": ("community_clubs", CommunityClub),
     "superMarket": ("supermarket_locations", Supermarket),
 }
