@@ -57,3 +57,4 @@ venv/
 
 # Firebase
 controller/firebase-key.json
+controller/firebase-example.json
