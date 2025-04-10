@@ -33,6 +33,9 @@ export default function Sidebar({setSearchResults}) {
     superMarket: false,
     mrtStation: false,
     clinics: false,
+    primarySchool: false,
+    secondarySchool: false,
+    juniorCollege: false
   });
 
   const toggleSwitch = (key) => {
@@ -133,6 +136,9 @@ export default function Sidebar({setSearchResults}) {
           { label: "Super Market", key: "superMarket" },
           { label: "MRT Station", key: "mrtStation" },
           { label: "Clinics", key: "clinics" },
+          { label: "Primary Schools", key: "primarySchool" },
+          { label: "Secondary Schools", key: "secondarySchool" },
+          { label: "Junior Colleges", key: "juniorCollege" }
         ].map((item) => (
           <div key={item.key} className="flex justify-between items-center mb-4">
             <span className="text-gray-700">{item.label}</span>

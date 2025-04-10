@@ -10,7 +10,7 @@ from .model.CommunityClub import CommunityClub
 from .model.CHASClinic import CHASClinic
 from .model.PrimarySch import PrimarySch
 from .model.SecondarySch import SecondarySch
-from .model.JuniorCollege import JuniorCollge
+from .model.JuniorCollege import JuniorCollege
 
 from .firebaseClient import db
 
@@ -31,7 +31,7 @@ AMENITY_MAP = {
     # below 3 toggles need to be added to frontend
     "primarySchool": ("primary_schools", PrimarySch),
     "secondarySchool": ("secondary_schools", SecondarySch),
-    "juniorCollege": ("junior_colleges", JuniorCollge),
+    "juniorCollege": ("junior_colleges", JuniorCollege),
 }
 
 class AmenityQueryCache:
