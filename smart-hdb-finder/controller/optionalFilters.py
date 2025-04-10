@@ -8,6 +8,9 @@ from .model.Supermarket import Supermarket
 from .model.Hawker import Hawker
 from .model.CommunityClub import CommunityClub
 from .model.CHASClinic import CHASClinic
+from .model.PrimarySch import PrimarySch
+from .model.SecondarySch import SecondarySch
+from .model.JuniorCollege import JuniorCollge
 
 from .firebaseClient import db
 
@@ -25,6 +28,10 @@ AMENITY_MAP = {
     "hawkerCentre": ("hawker_centres", Hawker),
     "communityClub": ("community_clubs", CommunityClub),
     "superMarket": ("supermarket_locations", Supermarket),
+    # below 3 toggles need to be added to frontend
+    "primarySchool": ("primary_schools", PrimarySch),
+    "secondarySchool": ("secondary_schools", SecondarySch),
+    "juniorCollege": ("junior_colleges", JuniorCollge),
 }
 
 class AmenityQueryCache:
