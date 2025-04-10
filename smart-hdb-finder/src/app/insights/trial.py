@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import pickle
@@ -16,12 +16,10 @@ app.add_middleware(
 )
 
 # Load your merged pipeline (preprocessing + model)
-# Make sure 'model_pipeline.pkl' is in the same directory or provide a full path.
 with open("model_pipeline.pkl", "rb") as f:
     pipeline = pickle.load(f)
 
 # Create a month mapping so we can convert month names to numeric values.
-# Adjust to match the months you display in your frontend dropdown.
 MONTH_MAP = {
     "January": 1,
     "February": 2,
@@ -37,7 +35,7 @@ MONTH_MAP = {
     "December": 12
 }
 
-# Define the data structure expected from the frontend
+# Define the data structure expected from the frontend for prediction.
 class PredictionInput(BaseModel):
     town: str
     flat_type: str
@@ -48,13 +46,13 @@ class PredictionInput(BaseModel):
 async def predict(data: PredictionInput):
     """
     Accepts user inputs: town, flat_type, future_year, and month name.
-    Converts month name to month_num. Feeds data into the pipeline for prediction.
-    Returns predicted resale price.
+    Converts month name to month_num, feeds data into the pipeline for prediction,
+    and returns the predicted resale price.
     """
-    # Convert the month name to its numeric value
+    # Convert the month name to its numeric value.
     month_num = MONTH_MAP.get(data.month, 0)  # default to 0 if not found
 
-    # Create a DataFrame to feed into the pipeline
+    # Create a DataFrame to feed into the pipeline.
     input_df = pd.DataFrame({
         "town": [data.town],
         "flat_type": [data.flat_type],
@@ -62,16 +60,11 @@ async def predict(data: PredictionInput):
         "month_num": [month_num]
     })
 
-    # Generate a prediction using the loaded pipeline
+    # Generate a prediction using the loaded pipeline.
     prediction = pipeline.predict(input_df)[0]
 
-    # Return the prediction as JSON (you can format or round as needed)
+    # Return the prediction as JSON.
     return {"predicted_price": float(prediction)}
-
-# For local testing: uvicorn main:app --reload
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
 
 @app.get("/trend")
 async def get_trend(town: str, flat_type: str):
@@ -79,14 +72,24 @@ async def get_trend(town: str, flat_type: str):
         # Load the CSV file (ensure the path is correct)
         df = pd.read_csv("ResaleData.csv")
         
+        # Convert 'month' to datetime and create 'year' column
+        df['month'] = pd.to_datetime(df['month'], format="%Y-%m", errors='coerce')
+        df['year'] = df['month'].dt.year
+        
+        # Standardize text columns for a case-insensitive match
+        df['town'] = df['town'].str.upper().str.strip()
+        df['flat_type'] = df['flat_type'].str.upper().str.strip()
+        input_town = town.strip().upper()
+        input_flat_type = flat_type.strip().upper()
+        
         # Filter the dataset by town and flat type
-        filtered_df = df[(df["town"] == town) & (df["flat_type"] == flat_type)]
-        if filtered_df.empty:
+        df_filtered = df[(df["town"] == input_town) & (df["flat_type"] == input_flat_type)]
+        if df_filtered.empty:
             raise HTTPException(status_code=404, detail="No data found for given parameters")
         
         # Group by year and calculate the average resale price
         trend_data = (
-            filtered_df.groupby("year")["resale_price"]
+            df_filtered.groupby("year")["resale_price"]
             .mean()
             .reset_index()
             .rename(columns={"resale_price": "average_price"})
@@ -97,8 +100,7 @@ async def get_trend(town: str, flat_type: str):
         return {"trend": trend_data.to_dict(orient="records")}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-        
-# To run the application with uvicorn, add this block:
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run("trial:app", host="0.0.0.0", port=8000, reload=True)
+
+
+
+
