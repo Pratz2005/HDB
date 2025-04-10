@@ -1,0 +1,914 @@
+[
+    {
+        "NAME": "North Vista Primary",
+        "POSTAL_CD": 544974,
+        "LATITUDE": 1.38282243016299,
+        "LONGITUDE": 103.895961877928
+    },
+    {
+        "NAME": "Palm View Primary",
+        "POSTAL_CD": 544822,
+        "LATITUDE": 1.38376923022123,
+        "LONGITUDE": 103.891354675017
+    },
+    {
+        "NAME": "Rivervale Primary",
+        "POSTAL_CD": 545092,
+        "LATITUDE": 1.39340997767762,
+        "LONGITUDE": 103.904559511997
+    },
+    {
+        "NAME": "Seng Kang Primary",
+        "POSTAL_CD": 545166,
+        "LATITUDE": 1.38949740422462,
+        "LONGITUDE": 103.899767112047
+    },
+    {
+        "NAME": "Xinmin Primary",
+        "POSTAL_CD": 538784,
+        "LATITUDE": 1.37139548941931,
+        "LONGITUDE": 103.883080767491
+    },
+    {
+        "NAME": "Ahmad Ibrahim Primary",
+        "POSTAL_CD": 768643,
+        "LATITUDE": 1.43315271543517,
+        "LONGITUDE": 103.832942401086
+    },
+    {
+        "NAME": "Jiemin Primary",
+        "POSTAL_CD": 768515,
+        "LATITUDE": 1.42768847665227,
+        "LONGITUDE": 103.830425490093
+    },
+    {
+        "NAME": "Northland Primary",
+        "POSTAL_CD": 769026,
+        "LATITUDE": 1.42096989918951,
+        "LONGITUDE": 103.840928424929
+    },
+    {
+        "NAME": "Xishan Primary",
+        "POSTAL_CD": 768611,
+        "LATITUDE": 1.43347186925064,
+        "LONGITUDE": 103.837755319448
+    },
+    {
+        "NAME": "Yishun Primary",
+        "POSTAL_CD": 768679,
+        "LATITUDE": 1.43338602975674,
+        "LONGITUDE": 103.834087115915
+    },
+    {
+        "NAME": "Anderson Primary",
+        "POSTAL_CD": 569785,
+        "LATITUDE": 1.38426429436736,
+        "LONGITUDE": 103.841392081119
+    },
+    {
+        "NAME": "Compassvale Primary",
+        "POSTAL_CD": 545091,
+        "LATITUDE": 1.39444529636566,
+        "LONGITUDE": 103.897812229905
+    },
+    {
+        "NAME": "Catholic High School (Pr & Secondary)",
+        "POSTAL_CD": 579767,
+        "LATITUDE": 1.35438878373608,
+        "LONGITUDE": 103.844210670766
+    },
+    {
+        "NAME": "CHIJ St Nicholas (Pr & Secondary)",
+        "POSTAL_CD": 569405,
+        "LATITUDE": 1.37347687878916,
+        "LONGITUDE": 103.834253269436
+    },
+    {
+        "NAME": "Ferngreen Primary",
+        "POSTAL_CD": 738907,
+        "LATITUDE": 1.4426347903311,
+        "LONGITUDE": 103.800040119743
+    },
+    {
+        "NAME": "Fernvale Primary",
+        "POSTAL_CD": 797701,
+        "LATITUDE": 1.39030227963797,
+        "LONGITUDE": 103.874445458032
+    },
+    {
+        "NAME": "Hougang Primary",
+        "POSTAL_CD": 534238,
+        "LATITUDE": 1.37738245231461,
+        "LONGITUDE": 103.880805274557
+    },
+    {
+        "NAME": "Sengkang Green Primary",
+        "POSTAL_CD": 797636,
+        "LATITUDE": 1.39284606680477,
+        "LONGITUDE": 103.875217666486
+    },
+    {
+        "NAME": "Yio Chu Kang Primary",
+        "POSTAL_CD": 538720,
+        "LATITUDE": 1.37793264345276,
+        "LONGITUDE": 103.885643682171
+    },
+    {
+        "NAME": "Anchor Green Primary",
+        "POSTAL_CD": 544969,
+        "LATITUDE": 1.39036998654612,
+        "LONGITUDE": 103.887165375933
+    },
+    {
+        "NAME": "Nan Chiau Primary",
+        "POSTAL_CD": 545080,
+        "LATITUDE": 1.39221149906592,
+        "LONGITUDE": 103.891180928186
+    },
+    {
+        "NAME": "North Spring Primary",
+        "POSTAL_CD": 545088,
+        "LATITUDE": 1.38706146494859,
+        "LONGITUDE": 103.903202683028
+    },
+    {
+        "NAME": "Springdale Primary",
+        "POSTAL_CD": 544799,
+        "LATITUDE": 1.39467010299293,
+        "LONGITUDE": 103.889926221247
+    },
+    {
+        "NAME": "Admiralty Primary",
+        "POSTAL_CD": 738907,
+        "LATITUDE": 1.4426347903311,
+        "LONGITUDE": 103.800040119743
+    },
+    {
+        "NAME": "Evergreen Primary",
+        "POSTAL_CD": 738908,
+        "LATITUDE": 1.44415332824735,
+        "LONGITUDE": 103.794577787757
+    },
+    {
+        "NAME": "Greenwood Primary",
+        "POSTAL_CD": 737942,
+        "LATITUDE": 1.43989958331782,
+        "LONGITUDE": 103.804725587384
+    },
+    {
+        "NAME": "Marsiling Primary",
+        "POSTAL_CD": 738927,
+        "LATITUDE": 1.43383904037059,
+        "LONGITUDE": 103.773643013846
+    },
+    {
+        "NAME": "Maris Stella High School (Pr & Secondary)",
+        "POSTAL_CD": 487012,
+        "LATITUDE": 1.33118107926966,
+        "LONGITUDE": 103.941853465631
+    },
+    {
+        "NAME": "Qihua Primary",
+        "POSTAL_CD": 738525,
+        "LATITUDE": 1.44203596557592,
+        "LONGITUDE": 103.788339762066
+    },
+    {
+        "NAME": "Woodgrove Primary",
+        "POSTAL_CD": 738079,
+        "LATITUDE": 1.43273620725049,
+        "LONGITUDE": 103.79023031392
+    },
+    {
+        "NAME": "Woodlands Ring Primary",
+        "POSTAL_CD": 738240,
+        "LATITUDE": 1.43495229315857,
+        "LONGITUDE": 103.797435733144
+    },
+    {
+        "NAME": "Endeavour Primary",
+        "POSTAL_CD": 757521,
+        "LATITUDE": 1.45388170417263,
+        "LONGITUDE": 103.817174701639
+    },
+    {
+        "NAME": "Huamin Primary",
+        "POSTAL_CD": 768857,
+        "LATITUDE": 1.42697284512936,
+        "LONGITUDE": 103.844240226564
+    },
+    {
+        "NAME": "Naval Base Primary",
+        "POSTAL_CD": 769028,
+        "LATITUDE": 1.41630663159387,
+        "LONGITUDE": 103.838794077233
+    },
+    {
+        "NAME": "North View Primary",
+        "POSTAL_CD": 768960,
+        "LATITUDE": 1.42752327193727,
+        "LONGITUDE": 103.848190787869
+    },
+    {
+        "NAME": "Northoaks Primary",
+        "POSTAL_CD": 757622,
+        "LATITUDE": 1.45660782030102,
+        "LONGITUDE": 103.814196981329
+    },
+    {
+        "NAME": "Peiying Primary",
+        "POSTAL_CD": 768687,
+        "LATITUDE": 1.41741627551251,
+        "LONGITUDE": 103.830143209875
+    },
+    {
+        "NAME": "Sembawang Primary",
+        "POSTAL_CD": 757715,
+        "LATITUDE": 1.4450737155262,
+        "LONGITUDE": 103.821042374036
+    },
+    {
+        "NAME": "Canberra Primary",
+        "POSTAL_CD": 757714,
+        "LATITUDE": 1.45125024371543,
+        "LONGITUDE": 103.815858858929
+    },
+    {
+        "NAME": "Fuchun Primary",
+        "POSTAL_CD": 739063,
+        "LATITUDE": 1.43047990810126,
+        "LONGITUDE": 103.778192944298
+    },
+    {
+        "NAME": "Innova Primaryi",
+        "POSTAL_CD": 738907,
+        "LATITUDE": 1.4426347903311,
+        "LONGITUDE": 103.800040119743
+    },
+    {
+        "NAME": "Riverside Primary",
+        "POSTAL_CD": 737803,
+        "LATITUDE": 1.44700426493785,
+        "LONGITUDE": 103.801889031334
+    },
+    {
+        "NAME": "Si Ling Primary",
+        "POSTAL_CD": 739067,
+        "LATITUDE": 1.43240935732525,
+        "LONGITUDE": 103.786035065192
+    },
+    {
+        "NAME": "Wellington Primary",
+        "POSTAL_CD": 757702,
+        "LATITUDE": 1.45192019155475,
+        "LONGITUDE": 103.822303719094
+    },
+    {
+        "NAME": "Woodlands Primary",
+        "POSTAL_CD": 738853,
+        "LATITUDE": 1.43658270720199,
+        "LONGITUDE": 103.791791282236
+    },
+    {
+        "NAME": "Ang Mo Kio Primary",
+        "POSTAL_CD": 569920,
+        "LATITUDE": 1.36932176584608,
+        "LONGITUDE": 103.839630858752
+    },
+    {
+        "NAME": "Holy Innocents' Primary",
+        "POSTAL_CD": 129955,
+        "LATITUDE": 1.30767967552671,
+        "LONGITUDE": 103.770697238069
+    },
+    {
+        "NAME": "Jing Shan Primary",
+        "POSTAL_CD": 569228,
+        "LATITUDE": 1.37223290983498,
+        "LONGITUDE": 103.852132214306
+    },
+    {
+        "NAME": "Mayflower Primary",
+        "POSTAL_CD": 569878,
+        "LATITUDE": 1.37637683547682,
+        "LONGITUDE": 103.843252803742
+    },
+    {
+        "NAME": "Punggol Primary",
+        "POSTAL_CD": 538787,
+        "LATITUDE": 1.37820062547641,
+        "LONGITUDE": 103.894667159512
+    },
+    {
+        "NAME": "Alexandra Primary",
+        "POSTAL_CD": 159016,
+        "LATITUDE": 1.29133439161334,
+        "LONGITUDE": 103.824424680531
+    },
+    {
+        "NAME": "Blangah Rise Primary",
+        "POSTAL_CD": 109100,
+        "LATITUDE": 1.27612047924037,
+        "LONGITUDE": 103.808628535239
+    },
+    {
+        "NAME": "New Town Primary",
+        "POSTAL_CD": 148812,
+        "LATITUDE": 1.29964188181021,
+        "LONGITUDE": 103.80010216304
+    },
+    {
+        "NAME": "Queenstown Primary",
+        "POSTAL_CD": 149303,
+        "LATITUDE": 1.29559365009015,
+        "LONGITUDE": 103.807548617332
+    },
+    {
+        "NAME": "CHIJ Primary (Toa Payoh)",
+        "POSTAL_CD": 319765,
+        "LATITUDE": 1.33275264711587,
+        "LONGITUDE": 103.841847263786
+    },
+    {
+        "NAME": "First Toa Payoh Primary",
+        "POSTAL_CD": 319252,
+        "LATITUDE": 1.34032299499938,
+        "LONGITUDE": 103.855529906182
+    },
+    {
+        "NAME": "Raffles Girls' Primary",
+        "POSTAL_CD": 289072,
+        "LATITUDE": 1.3294042600012,
+        "LONGITUDE": 103.806442915912
+    },
+    {
+        "NAME": "Cantonment Primary",
+        "POSTAL_CD": 88256,
+        "LATITUDE": 1.27547252623201,
+        "LONGITUDE": 103.839962631748
+    },
+    {
+        "NAME": "Gan Eng Seng Primary",
+        "POSTAL_CD": 158901,
+        "LATITUDE": 1.28559516494962,
+        "LONGITUDE": 103.815547410064
+    },
+    {
+        "NAME": "Radin Mas Primary",
+        "POSTAL_CD": 99840,
+        "LATITUDE": 1.27495823622634,
+        "LONGITUDE": 103.824188270373
+    },
+    {
+        "NAME": "River Valley Primary",
+        "POSTAL_CD": 237993,
+        "LATITUDE": 1.29418347842837,
+        "LONGITUDE": 103.836018941571
+    },
+    {
+        "NAME": "Zhangde Primary",
+        "POSTAL_CD": 169485,
+        "LATITUDE": 1.28421153335379,
+        "LONGITUDE": 103.825951875662
+    },
+    {
+        "NAME": "Bendemeer Primary",
+        "POSTAL_CD": 339948,
+        "LATITUDE": 1.32181250780475,
+        "LONGITUDE": 103.865404167629
+    },
+    {
+        "NAME": "Farrer Park Primary",
+        "POSTAL_CD": 217567,
+        "LATITUDE": 1.31236867681371,
+        "LONGITUDE": 103.850766402965
+    },
+    {
+        "NAME": "St Gabriel's Primary",
+        "POSTAL_CD": 529896,
+        "LATITUDE": 1.34023163951633,
+        "LONGITUDE": 103.952080114035
+    },
+    {
+        "NAME": "Xinghua Primary",
+        "POSTAL_CD": 538882,
+        "LATITUDE": 1.35790893589535,
+        "LONGITUDE": 103.890472887906
+    },
+    {
+        "NAME": "Yangzheng Primary",
+        "POSTAL_CD": 556108,
+        "LATITUDE": 1.34864575840923,
+        "LONGITUDE": 103.868595527042
+    },
+    {
+        "NAME": "Zhonghua Primary",
+        "POSTAL_CD": 556095,
+        "LATITUDE": 1.36020329705047,
+        "LONGITUDE": 103.869762438084
+    },
+    {
+        "NAME": "Kuo Chuan Primaryesbyterian Primary",
+        "POSTAL_CD": 426924,
+        "LATITUDE": 1.30626951892975,
+        "LONGITUDE": 103.908639688006
+    },
+    {
+        "NAME": "Teck Ghee Primary",
+        "POSTAL_CD": 569299,
+        "LATITUDE": 1.36558782075966,
+        "LONGITUDE": 103.850957126982
+    },
+    {
+        "NAME": "Townsville Primary",
+        "POSTAL_CD": 569730,
+        "LATITUDE": 1.36003263746623,
+        "LONGITUDE": 103.853826048327
+    },
+    {
+        "NAME": "Kuo Chuan Primaryesbyterian Secondary",
+        "POSTAL_CD": 426932,
+        "LATITUDE": 1.3059372353878,
+        "LONGITUDE": 103.908845449848
+    },
+    {
+        "NAME": "Edgefield Primary",
+        "POSTAL_CD": 828869,
+        "LATITUDE": 1.40009139510996,
+        "LONGITUDE": 103.907847599114
+    },
+    {
+        "NAME": "Greendale Primary",
+        "POSTAL_CD": 828848,
+        "LATITUDE": 1.39648195114256,
+        "LONGITUDE": 103.91233462071
+    },
+    {
+        "NAME": "Horizon Primary",
+        "POSTAL_CD": 828819,
+        "LATITUDE": 1.399550034492,
+        "LONGITUDE": 103.913404855665
+    },
+    {
+        "NAME": "Northshore Primary",
+        "POSTAL_CD": 828671,
+        "LATITUDE": 1.41813803336667,
+        "LONGITUDE": 103.904416909742
+    },
+    {
+        "NAME": "Punggol Cove Primary",
+        "POSTAL_CD": 828674,
+        "LATITUDE": 1.41159923273069,
+        "LONGITUDE": 103.898803921164
+    },
+    {
+        "NAME": "Punggol Green Primary",
+        "POSTAL_CD": 828772,
+        "LATITUDE": 1.40187220643293,
+        "LONGITUDE": 103.898801330302
+    },
+    {
+        "NAME": "Punggol View Primary",
+        "POSTAL_CD": 828845,
+        "LATITUDE": 1.40514582647962,
+        "LONGITUDE": 103.905156371376
+    },
+    {
+        "NAME": "Valour Primary",
+        "POSTAL_CD": 828728,
+        "LATITUDE": 1.40683570215319,
+        "LONGITUDE": 103.899078139493
+    },
+    {
+        "NAME": "Bedok Green Primary",
+        "POSTAL_CD": 469317,
+        "LATITUDE": 1.32344593287992,
+        "LONGITUDE": 103.937878976352
+    },
+    {
+        "NAME": "Fengshan Primary",
+        "POSTAL_CD": 469680,
+        "LATITUDE": 1.32980598760785,
+        "LONGITUDE": 103.931710293058
+    },
+    {
+        "NAME": "Junyuan Primary",
+        "POSTAL_CD": 528906,
+        "LATITUDE": 1.34787074766746,
+        "LONGITUDE": 103.939221709073
+    },
+    {
+        "NAME": "Temasek Primary",
+        "POSTAL_CD": 469300,
+        "LATITUDE": 1.31770677551333,
+        "LONGITUDE": 103.945590669163
+    },
+    {
+        "NAME": "Yu Neng Primary",
+        "POSTAL_CD": 469623,
+        "LATITUDE": 1.33388930344069,
+        "LONGITUDE": 103.932144857355
+    },
+    {
+        "NAME": "Angsana Primary",
+        "POSTAL_CD": 528565,
+        "LATITUDE": 1.36360590588314,
+        "LONGITUDE": 103.9389409004
+    },
+    {
+        "NAME": "East Spring Primary",
+        "POSTAL_CD": 529258,
+        "LATITUDE": 1.35268400746357,
+        "LONGITUDE": 103.961676849165
+    },
+    {
+        "NAME": "Elias Park Primary",
+        "POSTAL_CD": 518866,
+        "LATITUDE": 1.37505696315817,
+        "LONGITUDE": 103.945289416873
+    },
+    {
+        "NAME": "Gongshang Primary",
+        "POSTAL_CD": 529176,
+        "LATITUDE": 1.35711606790292,
+        "LONGITUDE": 103.949144797277
+    },
+    {
+        "NAME": "Meridian Primary",
+        "POSTAL_CD": 518798,
+        "LATITUDE": 1.37552831658484,
+        "LONGITUDE": 103.934889078518
+    },
+    {
+        "NAME": "Park View Primary",
+        "POSTAL_CD": 519524,
+        "LATITUDE": 1.37801687647812,
+        "LONGITUDE": 103.9392021807
+    },
+    {
+        "NAME": "Changkat Primary",
+        "POSTAL_CD": 529896,
+        "LATITUDE": 1.34023163951633,
+        "LONGITUDE": 103.952080114035
+    },
+    {
+        "NAME": "Chongzheng Primary",
+        "POSTAL_CD": 529392,
+        "LATITUDE": 1.35070739237744,
+        "LONGITUDE": 103.951399541868
+    },
+    {
+        "NAME": "Damai Primary",
+        "POSTAL_CD": 479226,
+        "LATITUDE": 1.33546106800406,
+        "LONGITUDE": 103.921270169613
+    },
+    {
+        "NAME": "St Anthony's Canossian Primary",
+        "POSTAL_CD": 545091,
+        "LATITUDE": 1.39444529636566,
+        "LONGITUDE": 103.897812229905
+    },
+    {
+        "NAME": "Tampines Primary",
+        "POSTAL_CD": 529426,
+        "LATITUDE": 1.3504863946694,
+        "LONGITUDE": 103.943573098509
+    },
+    {
+        "NAME": "Telok Kurau Primary",
+        "POSTAL_CD": 479239,
+        "LATITUDE": 1.33109611001931,
+        "LONGITUDE": 103.911005345855
+    },
+    {
+        "NAME": "Yumin Primary",
+        "POSTAL_CD": 529393,
+        "LATITUDE": 1.35129177656981,
+        "LONGITUDE": 103.950461927088
+    },
+    {
+        "NAME": "Canossa Catholic Primary",
+        "POSTAL_CD": 387621,
+        "LATITUDE": 1.32664424544839,
+        "LONGITUDE": 103.882227964852
+    },
+    {
+        "NAME": "Tanjong Katong Primary",
+        "POSTAL_CD": 437259,
+        "LATITUDE": 1.30498489044822,
+        "LONGITUDE": 103.899999965407
+    },
+    {
+        "NAME": "Casuarina Primary",
+        "POSTAL_CD": 518935,
+        "LATITUDE": 1.37246063927999,
+        "LONGITUDE": 103.957020286115
+    },
+    {
+        "NAME": "Oasis Primary",
+        "POSTAL_CD": 828716,
+        "LATITUDE": 1.40462413200793,
+        "LONGITUDE": 103.911120600638
+    },
+    {
+        "NAME": "Pasir Ris Primary",
+        "POSTAL_CD": 518968,
+        "LATITUDE": 1.37245132722087,
+        "LONGITUDE": 103.962922699031
+    },
+    {
+        "NAME": "St Hilda's Primary",
+        "POSTAL_CD": 529896,
+        "LATITUDE": 1.34023163951633,
+        "LONGITUDE": 103.952080114035
+    },
+    {
+        "NAME": "Tampines North Primary",
+        "POSTAL_CD": 529565,
+        "LATITUDE": 1.36047641484682,
+        "LONGITUDE": 103.948725782833
+    },
+    {
+        "NAME": "Waterway Primary",
+        "POSTAL_CD": 828802,
+        "LATITUDE": 1.39882800626578,
+        "LONGITUDE": 103.918621581556
+    },
+    {
+        "NAME": "White Sands Primary",
+        "POSTAL_CD": 519075,
+        "LATITUDE": 1.36555714668553,
+        "LONGITUDE": 103.960918869319
+    },
+    {
+        "NAME": "CHIJ (Katong) Primary",
+        "POSTAL_CD": 424821,
+        "LATITUDE": 1.30648535277087,
+        "LONGITUDE": 103.911105620496
+    },
+    {
+        "NAME": "Ngee Ann Primary",
+        "POSTAL_CD": 449149,
+        "LATITUDE": 1.30552505910497,
+        "LONGITUDE": 103.917463017497
+    },
+    {
+        "NAME": "Opera Estate Primary",
+        "POSTAL_CD": 458436,
+        "LATITUDE": 1.31931914436255,
+        "LONGITUDE": 103.923788259248
+    },
+    {
+        "NAME": "St Stephen's Primary",
+        "POSTAL_CD": 529896,
+        "LATITUDE": 1.34023163951633,
+        "LONGITUDE": 103.952080114035
+    },
+    {
+        "NAME": "Clementi Primary",
+        "POSTAL_CD": 129903,
+        "LATITUDE": 1.31506321827875,
+        "LONGITUDE": 103.763144493687
+    },
+    {
+        "NAME": "Henry Park Primary",
+        "POSTAL_CD": 278790,
+        "LATITUDE": 1.31667646178347,
+        "LONGITUDE": 103.784296227747
+    },
+    {
+        "NAME": "Nan Hua Primary",
+        "POSTAL_CD": 128806,
+        "LATITUDE": 1.31920159956387,
+        "LONGITUDE": 103.761095065761
+    },
+    {
+        "NAME": "Pei Tong Primary",
+        "POSTAL_CD": 129857,
+        "LATITUDE": 1.31619786415976,
+        "LONGITUDE": 103.767599818844
+    },
+    {
+        "NAME": "Qifa Primary",
+        "POSTAL_CD": 128104,
+        "LATITUDE": 1.3132658326807,
+        "LONGITUDE": 103.756629101811
+    },
+    {
+        "NAME": "Dazhong Primary",
+        "POSTAL_CD": 659441,
+        "LATITUDE": 1.3591797447277,
+        "LONGITUDE": 103.74847210784
+    },
+    {
+        "NAME": "Keming Primary",
+        "POSTAL_CD": 659762,
+        "LATITUDE": 1.34552849960874,
+        "LONGITUDE": 103.756449399351
+    },
+    {
+        "NAME": "Lianhua Primary",
+        "POSTAL_CD": 659243,
+        "LATITUDE": 1.35424191127295,
+        "LONGITUDE": 103.754165828711
+    },
+    {
+        "NAME": "Nanyang Primary",
+        "POSTAL_CD": 268097,
+        "LATITUDE": 1.32107094241153,
+        "LONGITUDE": 103.807681852799
+    },
+    {
+        "NAME": "Pei Hwa Primaryesbyterian Primary",
+        "POSTAL_CD": 597610,
+        "LATITUDE": 1.33807302121151,
+        "LONGITUDE": 103.776250903095
+    },
+    {
+        "NAME": "Boon Lay Garden Primary",
+        "POSTAL_CD": 649930,
+        "LATITUDE": 1.34317853793318,
+        "LONGITUDE": 103.713280889452
+    },
+    {
+        "NAME": "Corporation Primary",
+        "POSTAL_CD": 648347,
+        "LATITUDE": 1.35099779872539,
+        "LONGITUDE": 103.707593724342
+    },
+    {
+        "NAME": "Frontier Primary",
+        "POSTAL_CD": 648200,
+        "LATITUDE": 1.33641298743234,
+        "LONGITUDE": 103.69970173931
+    },
+    {
+        "NAME": "Jurong West Primary",
+        "POSTAL_CD": 648368,
+        "LATITUDE": 1.33917519796104,
+        "LONGITUDE": 103.698803732244
+    },
+    {
+        "NAME": "West Grove Primary",
+        "POSTAL_CD": 649223,
+        "LATITUDE": 1.3448790560014,
+        "LONGITUDE": 103.699286360581
+    },
+    {
+        "NAME": "Westwood Primary",
+        "POSTAL_CD": 649188,
+        "LATITUDE": 1.34718456606375,
+        "LONGITUDE": 103.70053420978
+    },
+    {
+        "NAME": "Xingnan Primary",
+        "POSTAL_CD": 649036,
+        "LATITUDE": 1.34254744877694,
+        "LONGITUDE": 103.687950252103
+    },
+    {
+        "NAME": "Bukit View Primary",
+        "POSTAL_CD": 659634,
+        "LATITUDE": 1.34586054788695,
+        "LONGITUDE": 103.75366641455
+    },
+    {
+        "NAME": "Jurong Primary",
+        "POSTAL_CD": 609476,
+        "LATITUDE": 1.34843859698946,
+        "LONGITUDE": 103.733156566858
+    },
+    {
+        "NAME": "Pioneer Primary",
+        "POSTAL_CD": 649037,
+        "LATITUDE": 1.33902264667589,
+        "LONGITUDE": 103.687769623983
+    },
+    {
+        "NAME": "Princess Elizabeth Primary",
+        "POSTAL_CD": 659163,
+        "LATITUDE": 1.349203512653,
+        "LONGITUDE": 103.74101964471
+    },
+    {
+        "NAME": "St Anthony's Primary",
+        "POSTAL_CD": 529896,
+        "LATITUDE": 1.34023163951633,
+        "LONGITUDE": 103.952080114035
+    },
+    {
+        "NAME": "Beacon Primary",
+        "POSTAL_CD": 679944,
+        "LATITUDE": 1.38394936211823,
+        "LONGITUDE": 103.773632022975
+    },
+    {
+        "NAME": "Bukit Panjang Primary",
+        "POSTAL_CD": 679676,
+        "LATITUDE": 1.37362179302436,
+        "LONGITUDE": 103.769374904025
+    },
+    {
+        "NAME": "Greenridge Primary",
+        "POSTAL_CD": 677744,
+        "LATITUDE": 1.3858892193692,
+        "LONGITUDE": 103.767794469258
+    },
+    {
+        "NAME": "Teck Whye Primary",
+        "POSTAL_CD": 688261,
+        "LATITUDE": 1.38364996834457,
+        "LONGITUDE": 103.753291857016
+    },
+    {
+        "NAME": "West Spring Primary",
+        "POSTAL_CD": 679946,
+        "LATITUDE": 1.38944145898943,
+        "LONGITUDE": 103.766195711835
+    },
+    {
+        "NAME": "West View Primary",
+        "POSTAL_CD": 677742,
+        "LATITUDE": 1.3836758200336,
+        "LONGITUDE": 103.760240434318
+    },
+    {
+        "NAME": "Zhenghua Primary",
+        "POSTAL_CD": 679002,
+        "LATITUDE": 1.37954887512229,
+        "LONGITUDE": 103.769313521752
+    },
+    {
+        "NAME": "Chua Chu Kang Primary",
+        "POSTAL_CD": 689905,
+        "LATITUDE": 1.37775890093367,
+        "LONGITUDE": 103.741832917421
+    },
+    {
+        "NAME": "Concord Primary",
+        "POSTAL_CD": 689814,
+        "LATITUDE": 1.38000806197242,
+        "LONGITUDE": 103.736225440727
+    },
+    {
+        "NAME": "Kranji Primary",
+        "POSTAL_CD": 689189,
+        "LATITUDE": 1.39356050497104,
+        "LONGITUDE": 103.747362720939
+    },
+    {
+        "NAME": "South View Primary",
+        "POSTAL_CD": 689762,
+        "LATITUDE": 1.38166664389749,
+        "LONGITUDE": 103.746275846011
+    },
+    {
+        "NAME": "Unity Primary",
+        "POSTAL_CD": 688268,
+        "LATITUDE": 1.40285481877246,
+        "LONGITUDE": 103.746822625758
+    },
+    {
+        "NAME": "Yew Tee Primary",
+        "POSTAL_CD": 689100,
+        "LATITUDE": 1.39676600905037,
+        "LONGITUDE": 103.750985967346
+    },
+    {
+        "NAME": "Bukit Timah Primary",
+        "POSTAL_CD": 598112,
+        "LATITUDE": 1.3377498622588,
+        "LONGITUDE": 103.766855344779
+    },
+    {
+        "NAME": "Fuhua Primary",
+        "POSTAL_CD": 609647,
+        "LATITUDE": 1.33659726465816,
+        "LONGITUDE": 103.736089481883
+    },
+    {
+        "NAME": "Lakeside Primary",
+        "POSTAL_CD": 618310,
+        "LATITUDE": 1.33820397704287,
+        "LONGITUDE": 103.718089546664
+    },
+    {
+        "NAME": "Rulang Primary",
+        "POSTAL_CD": 649295,
+        "LATITUDE": 1.34673868889096,
+        "LONGITUDE": 103.718457955487
+    },
+    {
+        "NAME": "Shuqun Primary",
+        "POSTAL_CD": 649332,
+        "LATITUDE": 1.34765311431632,
+        "LONGITUDE": 103.721523713379
+    },
+    {
+        "NAME": "Yuhua Primary",
+        "POSTAL_CD": 609558,
+        "LATITUDE": 1.34280230475033,
+        "LONGITUDE": 103.741105772644
+    }
+]
