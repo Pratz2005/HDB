@@ -98,7 +98,12 @@ def meets_toggle_criteria(record_obj, toggles) -> bool:
                     if not matching_candidates:
                         return False
                     for candidate in matching_candidates:
-                        record_obj.nearby_amenities.append(candidate.name)
+                        record_obj.nearby_amenities.append({
+                            "name": candidate.name,
+                            "distance": dist,
+                            "latitude": candidate.latitude,
+                            "longitude": candidate.longitude
+                        })
                 except Exception as e:
                     logger.error(f"Error fetching amenities for {amenity_key}: {e}")
                     return False

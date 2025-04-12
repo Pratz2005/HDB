@@ -54,6 +54,7 @@ export default function Sidebar({setSearchResults}) {
   /////////////////////////
   const handleSearch = async () => {
     setLoading(true); // Start loading
+    
     const payload = {
       location: location,
       flat_type: flatType,

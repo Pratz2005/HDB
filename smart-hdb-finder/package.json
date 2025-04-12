@@ -7,10 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "dev:api": "cd controller && uvicorn main:app --reload",
+    "dev:api": "uvicorn controller.main:app --reload",
     "dev:token": "cd controller && python OneMap_token_auth.py",
-    "dev:db": "cd model && python db_conn.py",
-    "dev:frontend": "npm run dev:token && npm run dev"
+    "dev:frontend": "npm run dev:token && npm run dev",
+    "dev:all": "python controller/OneMap_token_auth.py && npm run dev && uvicorn controller.main:app --reload"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.2",
@@ -26,6 +26,7 @@
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
     "react-leaflet": "^5.0.0",
+    "react-leaflet-markercluster": "^5.0.0-rc.0",
     "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7"
   },

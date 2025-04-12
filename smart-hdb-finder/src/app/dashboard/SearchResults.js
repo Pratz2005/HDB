@@ -11,7 +11,7 @@ import {
   serverTimestamp
 } from "firebase/firestore";
 
-export default function SearchResults({ results }) {
+export default function SearchResults({ results, onClick }) {
   const [expandedIndex, setExpandedIndex] = useState(null);
 
   const toggleExpand = async (index, record) => {
@@ -78,6 +78,7 @@ export default function SearchResults({ results }) {
       {results.records.map((record, index) => (
         <div
           key={index}
+          onMouseEnter={() => onClick(record)}
           className="border border-gray-300 rounded-lg shadow hover:shadow-lg transition duration-300"
         >
           <button
@@ -98,7 +99,8 @@ export default function SearchResults({ results }) {
           </button>
 
           {expandedIndex === index && (
-            <div className="px-4 py-3 bg-white border-t border-gray-200 rounded-b-lg text-sm text-gray-700 space-y-2">
+            <div 
+              className="px-4 py-3 bg-white border-t border-gray-200 rounded-b-lg text-sm text-gray-700 space-y-2">
               <p><strong>Postal Code:</strong> {record.postal}</p>
               <p><strong>Floor Area (sqm):</strong> {record.floor_area_sqm}</p>
               <p><strong>Remaining Lease:</strong> {record.remaining_lease}</p>
@@ -106,7 +108,7 @@ export default function SearchResults({ results }) {
               <p><strong>Nearby Amenities:</strong></p>
               <ul className="list-disc list-inside ml-4">
                 {record.nearby_amenities.map((amenity, i) => (
-                  <li key={i}>{amenity}</li>
+                  <li key={i}>{amenity.name} -  <strong>{(amenity.distance * 1000).toFixed(0)} m</strong></li>
                 ))}
               </ul>
               <div>

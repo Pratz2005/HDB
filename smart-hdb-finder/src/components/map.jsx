@@ -3,6 +3,7 @@ import L from 'leaflet';
 import "leaflet/dist/leaflet.css"
 import "leaflet-defaulticon-compatibility"
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css"
+
 import { useEffect } from "react";
 
 // OneMap map uses EPSG:3857 Coordinate System
@@ -16,12 +17,27 @@ export default function MapComponent({ position, children }) {
                 map.setView(center);
             }
         }, [center, map]);
+
+        useEffect(() => {
+            const zoomHandler = () => {
+                if (map.getZoom() > 17) {
+                    map.setZoom(17);  // zoom restriction to max 17 because map blanks out after
+                }
+            };
+    
+            map.on('zoomend', zoomHandler); 
+    
+            // cleanup the event listener when the component unmounts or re-renders
+            return () => {
+                map.off('zoomend', zoomHandler); 
+            }
+         }, [map]);
     }
 
     return (
         <MapContainer 
             center={[position.latitude, position.longitude]}
-            zoom={16} 
+            zoom={17} 
             scrollWheelZoom={true} 
             maxZoom={19} 
             minZoom={11}
