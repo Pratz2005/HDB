@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer, useMap } from "react-leaflet"
+import { useMap } from "react-leaflet";
 import L from 'leaflet';
 import "leaflet/dist/leaflet.css"
 import "leaflet-defaulticon-compatibility"
@@ -7,16 +7,16 @@ import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 import { useEffect } from "react";
 
 // OneMap map uses EPSG:3857 Coordinate System
-export default function MapComponent({ position, children }) {
+export default function MapComponent({ position, children, nearbyMarkers, localClickedListing }) {
 
-    function RecenterMap({center}) {
-        const map = useMap();
+    const map = useMap();
 
-        useEffect(() => {
-            if(center) {
-                map.setView(center);
-            }
-        }, [center, map]);
+    // recenter map
+    useEffect(() => {
+        if (position) {
+            map.setView([position.latitude, position.longitude]);
+        }
+    }, [position, map]);
 
         useEffect(() => {
             const zoomHandler = () => {
@@ -32,26 +32,87 @@ export default function MapComponent({ position, children }) {
                 map.off('zoomend', zoomHandler); 
             }
          }, [map]);
-    }
+
+         useEffect(() => {
+            if (nearbyMarkers && nearbyMarkers.length > 0) {
+                // collect all marker latLngs
+                const boundsArray = nearbyMarkers.map(marker => marker.getLatLng());
+        
+                // ensure localClickedListing is valid before adding it to bounds
+                if (localClickedListing && localClickedListing.latitude && localClickedListing.longitude) {
+                    const clickedListingLatLng = L.latLng(localClickedListing.latitude, localClickedListing.longitude);
+                    boundsArray.push(clickedListingLatLng);
+                }
+        
+                // calculate the bounds based on the markers
+                const bounds = L.latLngBounds(boundsArray);
+        
+                // adjust map view to fit all markers
+                if (map) {
+                    map.fitBounds(bounds, { padding: [50, 50] }); // padding to make sure it doesn't cut off right at the marker
+        
+                    const currentZoom = map.getZoom();
+                    if (currentZoom > 17) {
+                        map.setZoom(17);
+                    }
+                }
+            }
+        }, [nearbyMarkers, map, localClickedListing]); 
+    
+        // for the legend
+        useEffect(() => {
+            const legend = L.control({ position: "bottomleft" });
+    
+            legend.onAdd = function () {
+            const div = L.DomUtil.create("div", "info legend");
+            div.style.backgroundColor = "white";  
+            div.style.padding = "14px";  
+            div.style.paddingTop = "6px";
+            div.style.paddingBottom = "6px";
+            div.style.borderRadius = "8px"; 
+            div.style.fontSize = "14px"; 
+            div.innerHTML = `
+                <div style="margin-bottom: 8px;">
+                <b style="font-size: 16px;">Legend:</b>  <!-- Title -->
+                </div>
+                <div style="margin-bottom: 4px;">
+                    <i style="background-color: #6A2C91; border-radius: 50%; width: 14px; height: 14px; display: inline-block;"></i><span style="padding-left: 8px;"> Primary Schools</span>
+                </div>
+                <div style="margin-bottom: 4px;">
+                    <i style="background-color: #D56A6A; border-radius: 50%; width: 14px; height: 14px; display: inline-block;"></i><span style="padding-left: 8px;"> Secondary Schools</span>
+                </div>
+                <div style="margin-bottom: 4px;">
+                    <i style="background-color: #FFEB3B; border-radius: 50%; width: 14px; height: 14px; display: inline-block;"></i><span style="padding-left: 8px;"> Junior Colleges</span>
+                </div>
+                <div style="margin-bottom: 4px;">
+                    <i style="background-color: #2C3D4C; border-radius: 50%; width: 14px; height: 14px; display: inline-block;"></i><span style="padding-left: 8px;"> MRTs</span>
+                </div>
+                <div style="margin-bottom: 4px;">
+                    <i style="background-color: #228B22; border-radius: 50%; width: 14px; height: 14px; display: inline-block;"></i><span style="padding-left: 8px;"> Supermarkets</span>
+                </div>
+                <div style="margin-bottom: 4px;">
+                 <i style="background-color: #E6007E; border-radius: 50%; width: 14px; height: 14px; display: inline-block;"></i><span style="padding-left: 8px;"> Community Club (CC)</span>
+                </div>
+                <div style="margin-bottom: 4px;">
+                    <i style="background-color: #4A5D6D; border-radius: 50%; width: 14px; height: 14px; display: inline-block;"></i><span style="padding-left: 8px;"> Hawker Centres</span>
+                </div>
+                <div>
+                    <i style="background-color: #D7A78D; border-radius: 50%; width: 14px; height: 14px; display: inline-block;"></i><span style="padding-left: 8px;"> Clinics</span>
+                </div>
+            `;
+            return div;
+            };
+    
+            legend.addTo(map);
+    
+            return () => {
+            map.removeControl(legend);
+            };
+        }, [map]);
 
     return (
-        <MapContainer 
-            center={[position.latitude, position.longitude]}
-            zoom={17} 
-            scrollWheelZoom={true} 
-            maxZoom={19} 
-            minZoom={11}
-            maxBounds={L.latLngBounds([1.144, 103.535], [1.494, 104.502])}
-            style={{ height: '95%', width: '100%' }}
-        >
-        <TileLayer
-            url='https://www.onemap.gov.sg/maps/tiles/Default/{z}/{x}/{y}.png'
-            detectRetina={true}
-            /** DO NOT REMOVE the OneMap attribution below **/
-            attribution='<img src="https://www.onemap.gov.sg/web-assets/images/logo/om_logo.png" style="height:20px;width:20px;"/>&nbsp;<a href="https://www.onemap.gov.sg/" target="_blank" rel="noopener noreferrer">OneMap</a>&nbsp;&copy;&nbsp;contributors&nbsp;&#124;&nbsp;<a href="https://www.sla.gov.sg/" target="_blank" rel="noopener noreferrer">Singapore Land Authority</a>'
-        />
-        <RecenterMap center={[position.latitude, position.longitude]}/>
-        {children} {/* special prop - contains the JSX content placed between the tags of a component */}
-        </MapContainer>
+        <div>
+            {children} {/* special prop - contains the JSX content placed between the tags of a component */}
+        </div>
     );
 }

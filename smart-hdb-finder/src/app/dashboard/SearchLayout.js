@@ -21,11 +21,13 @@ export default function SearchLayout({onClick, getSearchResults}) {
       <Sidebar setSearchResults={setSearchResults}/>
 
       {/* Results Panel */}
-      {searchResults && (
-        <div className="w-[400px] px-4 pb-4 border-l shadow-md bg-white overflow-y-auto">
-          <SearchResults onClick={onClick} results={searchResults} />
-        </div>
-      )}
+      <div className="flex-grow overflow-hidden flex flex-col">
+        {searchResults && (
+          <div className="w-[400px] flex-grow px-4 pb-4 border-l shadow-md bg-white overflow-y-auto">
+            <SearchResults onClick={onClick} results={searchResults} />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
