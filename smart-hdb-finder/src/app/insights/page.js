@@ -1,4 +1,7 @@
   "use client"; // Required if you're using Next.js 13+ in the app/ directory
+import Image from "next/image";
+import Link from "next/link";
+import HamburgerMenu from "../../components/Hamburger";
 
 import { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
@@ -126,9 +129,32 @@ export default function HDBResalePricePrediction() {
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 text-gray-800">
       {/* Header */}
-      <header className="bg-orange-500 text-white p-4 text-center">
-        <h1 className="text-2xl font-bold">HDB Resale Price Prediction</h1>
-      </header>
+      <header className="w-full flex items-center justify-between px-6 py-2 shadow-sm bg-orange-500">
+      {/* LEFT SIDE: Logo + Buttons */}
+      <div className="flex items-center gap-4">
+        <Link href="/">
+          <Image
+            src="/logo.png"
+            alt="Smart HDB Finder Logo"
+            width={60}
+            height={60}
+            className="object-contain"
+          />
+        </Link>
+        <button className="border-2 border-white text-white px-3 py-1 rounded-lg font-semibold hover:bg-orange-300 hover:text-white transition">
+          Find myHDB!
+        </button>
+        <Link href="/insights">
+        <div className="cursor-pointer border-2 border-white text-white px-3 py-1 rounded-lg font-semibold hover:bg-orange-300 hover:text-white transition">
+          HDB Market Watch
+        </div>
+        </Link>
+      </div>
+
+      {/* RIGHT SIDE: Hamburger */}
+      <HamburgerMenu />
+    </header>
+
 
       {/* Main Content */}
       <main className="flex flex-row flex-1">
@@ -268,25 +294,6 @@ export default function HDBResalePricePrediction() {
           )}
         </div>
       </main>
-
-      {/* Footer */}
-      <footer className="bg-orange-500 text-white px-4 py-6 mt-5">
-        <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-4 md:mb-0 flex items-center space-x-2">
-            <img src="/logo.png" alt="Smart HDB Finder Logo" className="h-20 w-auto" />
-          </div>
-          <div className="flex flex-col md:flex-row md:space-x-8 text-base text-white text-center md:text-left">
-          <a href="https://entuedu-my.sharepoint.com/:w:/r/personal/nurs0066_e_ntu_edu_sg/Documents/SC2006%20Documentation/Lab%201%20Deliverables/SC2006%20Sofware%20Requirements%20Specification.docx?d=wb75d9895b65b446f874f9158623b95d5&csf=1&web=1&e=ieXWUN" target="_blank" rel="noopener noreferrer" className="hover:text-white mb-2 md:mb-0">About Us</a>
-            <a href="#" className="hover:text-white mb-2 md:mb-0">License</a>
-            <a href="https://github.com/softwarelab3/2006-SCMA-U2" target="_blank" rel="noopener noreferrer" className="hover:text-white mb-2 md:mb-0">Github</a>
-            <a href="#" className="hover:text-white">Contact Us</a>
-          </div>
-        </div>
-        <hr className="my-4 border-gray-700" />
-        <div className="text-center text-white text-base">
-          © 2025 Smart HDB Finder
-        </div>
-      </footer>
     </div>
   );
 }

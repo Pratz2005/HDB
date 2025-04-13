@@ -21,9 +21,11 @@ export default function Header() {
         <button className="border-2 border-white text-white px-3 py-1 rounded-lg font-semibold hover:bg-orange-300 hover:text-white transition">
           Find myHDB!
         </button>
-        <div className="text-white text-sm font-medium cursor-pointer hover:underline">
+        <Link href="/insights">
+        <div className="cursor-pointer border-2 border-white text-white px-3 py-1 rounded-lg font-semibold hover:bg-orange-300 hover:text-white transition">
           HDB Market Watch
         </div>
+        </Link>
       </div>
 
       {/* RIGHT SIDE: Hamburger */}
