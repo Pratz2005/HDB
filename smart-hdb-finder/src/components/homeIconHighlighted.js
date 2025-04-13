@@ -2,9 +2,9 @@ import L from 'leaflet';
 
 const homeIconHighlighted = L.icon({
     iconUrl: '/home_icon_highlighted.png', 
-    iconSize: [72, 72],
-    iconAnchor: [36, 72],
-    popupAnchor: [0, -72]
+    iconSize: [92, 92],
+    iconAnchor: [46, 92],
+    popupAnchor: [0, -92]
 });
 
 export default homeIconHighlighted;
