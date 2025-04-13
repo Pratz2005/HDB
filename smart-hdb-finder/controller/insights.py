@@ -1,22 +1,18 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import APIRouter, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import pickle
+import os
 import pandas as pd
 
-app = FastAPI()
+router = APIRouter()
 
-# Enable CORS for local development (adjust for production)
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# Construct an absolute file path to model_pipeline.pkl relative to this file.
+base_dir = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(base_dir, "model_pipeline.pkl")
 
 # Load your merged pipeline (preprocessing + model)
-with open("model_pipeline.pkl", "rb") as f:
+with open(model_path, "rb") as f:
     pipeline = pickle.load(f)
 
 # Create a month mapping so we can convert month names to numeric values.
@@ -42,7 +38,7 @@ class PredictionInput(BaseModel):
     future_year: int
     month: str
 
-@app.post("/predict")
+@router.post("/predict")
 async def predict(data: PredictionInput):
     """
     Accepts user inputs: town, flat_type, future_year, and month name.
@@ -66,7 +62,7 @@ async def predict(data: PredictionInput):
     # Return the prediction as JSON.
     return {"predicted_price": float(prediction)}
 
-@app.get("/trend")
+@router.get("/trend")
 async def get_trend(town: str, flat_type: str):
     try:
         # Load the CSV file (ensure the path is correct)

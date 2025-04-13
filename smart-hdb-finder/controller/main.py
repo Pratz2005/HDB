@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from .search import router as search_router
 from .oneMap import router as onemap_router
+from .insights import router as insights_router
 from .sync_firestore import fetch_and_upload_latest_hdb_data 
 
 app = FastAPI()
@@ -19,6 +20,7 @@ app.add_middleware(
 
 app.include_router(search_router)
 app.include_router(onemap_router)
+app.include_router(insights_router)
 
 @app.get("/")
 def read_root():
