@@ -19,8 +19,9 @@ export default function HamburgerMenu() {
           <Link href="/recently-viewed">
             <li className="hover:bg-gray-100 px-4 py-2 cursor-pointer">Recently Viewed</li>
           </Link>
-            <li className="hover:bg-gray-100 px-5 py-3 cursor-pointer">Market Insight</li>
+          <Link href="/">
             <li className="hover:bg-gray-100 px-5 py-3 cursor-pointer">Logout</li>
+          </Link>
           </ul>
         </div>
       )}
