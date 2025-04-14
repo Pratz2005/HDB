@@ -33,6 +33,8 @@ export default function SearchResults({ results, onClick }) {
           remaining_lease: record.remaining_lease,
           month: record.month,
           nearby_amenities: record.nearby_amenities,
+          longitude: record.longitude,
+          latitude: record.latitude,
           viewedAt: Date.now(), // keeps track of time viewed
         };
   
@@ -78,7 +80,7 @@ export default function SearchResults({ results, onClick }) {
       {results.records.map((record, index) => (
         <div
           key={index}
-          onMouseEnter={() => onClick(record)}
+          onClick={() => onClick(record)}
           className="border border-gray-300 rounded-lg shadow hover:shadow-lg transition duration-300"
         >
           <button

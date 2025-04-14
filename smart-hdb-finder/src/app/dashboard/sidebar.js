@@ -94,6 +94,8 @@ export default function Sidebar({ setSearchResults }) {
     } finally {
       setLoading(false); // Stop loading
     }
+
+    window.history.pushState({}, '', '/dashboard');
   };
 
   return (

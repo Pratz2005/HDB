@@ -6,6 +6,8 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import homeIcon from "../../components/homeIcon";
 import homeIconHighlighted from "../../components/homeIconHighlighted";
 import IconFactory from './IconFactory';
+import { useSearchParams } from "next/navigation";
+
 
 export default function DashboardPage() {
   const [localClickedListing, setlocalClickedListing] = useState(null); // store clicked listing
@@ -13,16 +15,20 @@ export default function DashboardPage() {
   const [nearbyAmenitiesMarkers, setNearbyAmenitiesMarkers] = useState([]); // store markers for nearby amenities
   const [searchResults, setSearchResults] = useState([]); // store full search results
   const [loadingAmenities, setLoadingAmenities] = useState(true); // to track loading state for the amenity markers
-  const [furthestAmenity, setFurthestAmenity] = useState(null); // to get further amenity for rendering map
   const [coordinates, setCoordinates] = useState({ // user's current location
     latitude: 1.3521,
     longitude: 103.8198,
   });
 
-  // ref for clicked listing marker
-  const clickedListingMarkerRef = useRef(null);
-    // refs array for all nearby amenities markers
+  const searchParams = useSearchParams(); // accessing the current location object to get the listing ID passed via state
+  const userId = searchParams.get("userId"); 
+  const postalCode = searchParams.get("postalCode");
+
+  // refs array for all nearby amenities markers
   const nearbyAmenitiesMarkerRefs = useRef([]); 
+
+  // refs object for all clickedListing marker
+  const localClickedListingMarkerRefs = useRef(null); 
 
   const getUserLocation = () => {
     if (navigator.geolocation) {
@@ -44,26 +50,33 @@ export default function DashboardPage() {
     getUserLocation();
   }, []);
 
-  useEffect(() => {
-    console.log(coordinates);
-  }, [coordinates]);
-
-  const handleClick = (record) => {
+  const handleClick = (record, index) => {
     setlocalClickedListing(record); // update local clicked listing
     console.log("Clicked Listing:", record); 
-    console.log("Clicked Listing Nearby Amenities`:", record.nearby_amenities);
-
-    if (record.nearby_amenities && record.nearby_amenities.length > 0) {
-      const furthest = record.nearby_amenities.reduce((max, amenity) => {
-        return amenity.distance > max.distance ? amenity : max;
-      });
+    // console.log("Clicked Listing Nearby Amenities`:", record.nearby_amenities);
+  };
   
-    // Save the furthest amenity to the state
-    setFurthestAmenity(furthest);
-    console.log("Furthest Amenity:", furthest);  // Log the furthest amenity
+  // fetch listing data from db
+  const fetchListing = async () => {
+    if (!userId || !postalCode) return;
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/listing?user_id=${userId}&postal_code=${postalCode}`);
+      if (response.ok) {
+        const data = await response.json();
+        setlocalClickedListing(data);
+      } else {
+        console.error("Failed to fetch listing:", response.status);
+      }
+    } catch (error) {
+      console.error("Error fetching listing from backend:", error);
     }
   };
-      
+
+  useEffect(() => {
+    if (userId && postalCode) {
+      fetchListing();  
+    }
+  }, [userId, postalCode]);
 
   const getSearchResults = (results) => {
     setSearchResults(results.records);
@@ -72,13 +85,15 @@ export default function DashboardPage() {
 
   useEffect(() => {
     if (searchResults && searchResults.length > 0) {
-      const markers = searchResults.map((record, index) => (
+      const markers = searchResults
+      .filter(record => record.geohash !== localClickedListing?.geohash)
+      .map((record, index) => (
         <Marker
           key={index}
           position={[record.latitude, record.longitude]}
           icon={homeIcon}
           eventHandlers={{
-            click: () => handleClick(record), // update context on marker click
+            click: () => handleClick(record, index), // update context on marker click
           }}>
           <Popup>
             <b>Postal Code:</b> {record.postal} <br />
@@ -91,7 +106,7 @@ export default function DashboardPage() {
     } else {
       setSearchResultsMarkers([]);
     }
-  }, [searchResults]);
+  }, [searchResults, localClickedListing]);
 
   // when listing is clicked, create amenities markers
   useEffect(() => {
@@ -118,13 +133,19 @@ export default function DashboardPage() {
             ref={(marker) => {
               if (marker) {
                 nearbyAmenitiesMarkerRefs.current[index] = marker; // save each marker ref
-                console.log("Marker: ", marker)
+                // console.log("Marker: ", marker)
               }
             }}
           >
             <Popup autoClose={false} closeOnClick={false}>
-              <b>{amenity.name}</b><br />
-              Distance: {(amenity.distance * 1000).toFixed(0)} meters
+              <div className="rounded-lg w-full">
+                  <div className="text-base font-semibold text-blue-800">
+                    <b>{amenity.name}</b><br />
+                  </div>
+                  <div className="text-sm text-gray-800 mb-4">
+                    <b>Distance: {(amenity.distance * 1000).toFixed(0)} meters</b>
+                  </div>
+              </div>
             </Popup>
           </Marker>
         );
@@ -147,9 +168,17 @@ export default function DashboardPage() {
     });
   };
 
+  const openLocalClickedListingPopup = () => {
+    if (localClickedListingMarkerRefs.current) {
+      localClickedListingMarkerRefs.current.openPopup(); // Opens the popup for the clicked listing
+    }
+  };
+
   // when a listing is clicked, popup opens automatically
   useEffect(() => {
     if (localClickedListing && nearbyAmenitiesMarkers.length > 0) {
+      openLocalClickedListingPopup();
+
       const timer = setTimeout(openAllPopups, 100); 
       return () => clearTimeout(timer);
     }
@@ -167,7 +196,7 @@ export default function DashboardPage() {
             zoom={17}
             scrollWheelZoom={true}
             maxZoom={19}
-            minZoom={11}
+            minZoom={15}
             maxBounds={L.latLngBounds([1.144, 103.535], [1.494, 104.502])}
             style={{ height: "100%", width: "100%" }}
           >
@@ -183,7 +212,6 @@ export default function DashboardPage() {
               position={localClickedListing || coordinates}
               nearbyMarkers={nearbyAmenitiesMarkerRefs.current}
               localClickedListing={localClickedListing}
-              furthestAmenity={furthestAmenity}
             >
               {/* Marker for user's current location */}
               <Marker position={[coordinates.latitude, coordinates.longitude]} icon={homeIcon}>
@@ -199,18 +227,36 @@ export default function DashboardPage() {
                   <React.Fragment key={index}>{marker}</React.Fragment>
                 ))
               ) : (
-                <div>Loading amenities...</div>
+                <div></div>
               )}
 
               {/* Render the clicked listing */}
               {localClickedListing && (
-                <Marker position={[localClickedListing.latitude, localClickedListing.longitude]} icon={homeIconHighlighted}>
-                  <Popup>
-                    BLK {localClickedListing.block} {localClickedListing.street_name}
-                    <br />
-                    <b>Postal Code:</b> {localClickedListing.postal}
-                  </Popup>
-                </Marker>
+                <Marker
+                position={[localClickedListing.latitude, localClickedListing.longitude]} 
+                icon={homeIconHighlighted}
+                ref={(marker) => {
+                  if (marker) {
+                    localClickedListingMarkerRefs.current = marker; // store the marker reference
+                  }
+                }}
+              >
+                  <Popup autoClose={false} closeOnClick={false}>
+                  <div className="rounded-lg w-full">
+                    <div className="text-base font-semibold text-blue-800">
+                      {localClickedListing.block} {localClickedListing.street_name}
+                    </div>
+                    <div className="text-sm text-gray-800 mb-4">
+                      <b>Nearby Amenities:</b> <br />
+                      {localClickedListing.nearby_amenities.map((amenity, index) => (
+                        <span key={index} className="text-sm text-gray-700 block">
+                          {amenity.name}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </Popup>
+              </Marker>
               )}
             </MapComponent>
           </MapContainer>

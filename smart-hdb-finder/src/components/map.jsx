@@ -14,14 +14,17 @@ export default function MapComponent({ position, children, nearbyMarkers, localC
     // recenter map
     useEffect(() => {
         if (position) {
-            map.setView([position.latitude, position.longitude]);
+            map.setView([position.latitude, position.longitude], 17, {
+                animate: true, // Enable smooth animation
+                duration: 2,   // Set the duration of the transition (in seconds)
+            });
         }
     }, [position, map]);
 
         useEffect(() => {
             const zoomHandler = () => {
                 if (map.getZoom() > 17) {
-                    map.setZoom(17);  // zoom restriction to max 17 because map blanks out after
+                    map.setZoom(17, { animate: true, duration: 2 });  // zoom restriction to max 17 because map blanks out after
                 }
             };
     

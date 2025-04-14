@@ -13,6 +13,7 @@
     "dev:all": "python controller/OneMap_token_auth.py && npm run dev && uvicorn controller.main:app --reload"
   },
   "dependencies": {
+    "@radix-ui/react-hover-card": "^1.1.7",
     "@radix-ui/react-slot": "^1.1.2",
     "chart.js": "^4.4.8",
     "class-variance-authority": "^0.7.1",
