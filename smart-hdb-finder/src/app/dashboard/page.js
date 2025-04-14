@@ -159,7 +159,7 @@ export default function DashboardPage() {
     <div className="flex h-screen">
       <SearchLayout onClick={handleClick} getSearchResults={getSearchResults}/>
 
-      <div className="flex flex-col flex-grow px-4 pt-4 mb-6 bg-gray-100">
+      <div className="flex flex-col flex-grow px-4 pt-4 pb-4 bg-gray-100 h-screen">
         <h1 className="text-2xl font-bold text-black">Dashboard</h1>
         <div className="flex-grow">
         <MapContainer
@@ -169,7 +169,7 @@ export default function DashboardPage() {
             maxZoom={19}
             minZoom={11}
             maxBounds={L.latLngBounds([1.144, 103.535], [1.494, 104.502])}
-            style={{ height: "95%", width: "100%" }}
+            style={{ height: "100%", width: "100%" }}
           >
             <TileLayer
                 url='https://www.onemap.gov.sg/maps/tiles/Default/{z}/{x}/{y}.png'
