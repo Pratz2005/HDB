@@ -66,7 +66,7 @@ async def predict(data: PredictionInput):
 async def get_trend(town: str, flat_type: str):
     try:
         # Load the CSV file (ensure the path is correct)
-        df = pd.read_csv("ResaleData.csv")
+        df = pd.read_csv("controller/ResaleData.csv")
         
         # Convert 'month' to datetime and create 'year' column
         df['month'] = pd.to_datetime(df['month'], format="%Y-%m", errors='coerce')
