@@ -13,31 +13,31 @@ export default class IconFactory {
     // select icon based on amenity name
     static getIcon(amenityName) {
       if (amenityName.toLowerCase().includes('primary')) {
-        console.log("primary")
+        // console.log("primary")
         return primarySchoolIcon;
       } else if (amenityName.toLowerCase().includes('secondary')) {
-        console.log("secondary")
+        // console.log("secondary")
         return secondarySchoolIcon;
       } else if (amenityName.toLowerCase().includes('junior college')) {
-        console.log("JC")
+        // console.log("JC")
         return juniorCollegeIcon;
       } else if (amenityName.toLowerCase().includes('clinic') || amenityName.toLowerCase().includes('medical') || amenityName.toLowerCase().includes('doctor')) {
-        console.log("Clinic")
+        // console.log("Clinic")
         return clinicIcon;
       } else if (amenityName.toLowerCase().includes('mrt')) {
-        console.log("mrt")
+        // console.log("mrt")
         return mrtIcon;
       } else if (amenityName.toLowerCase().includes('grocery') || amenityName.toLowerCase().includes('cold storage') || amenityName.toLowerCase().includes('fairprice') || amenityName.toLowerCase().includes('sheng siong') || amenityName.toLowerCase().includes('frozen')) {
-        console.log("supermarket")
+        // console.log("supermarket")
         return supermarketIcon;
       } else if (amenityName.toLowerCase().includes('cc')) {
-        console.log("CC")
+        // console.log("CC")
         return communityClubIcon;
       } else if (amenityName.toLowerCase().includes('food') || amenityName.toLowerCase().includes('blk') || amenityName.toLowerCase().includes('hawker')) {
-        console.log("hawker")
+        // console.log("hawker")
         return hawkerIcon;
       } else {
-        console.log("")
+        // console.log("")
         return homeIcon; // Default icon if no matches
       }
     }

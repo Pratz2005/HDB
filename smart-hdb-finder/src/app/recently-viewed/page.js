@@ -15,9 +15,9 @@ export default function RecentlyViewedPage() {
   const [activeDetail, setActiveDetail] = useState(null);
 
   const router = useRouter();
+  const auth = getAuth();
 
   useEffect(() => {
-    const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (!user || user.providerData.length === 0) {
         setShowLoginModal(true);
@@ -63,6 +63,15 @@ export default function RecentlyViewedPage() {
       </div>
     );
   }
+
+  const handleViewFullListing = (listing) => {
+    const userId = auth.currentUser.uid;
+    const postalCode = listing.postal;
+  
+    router.push(`/dashboard?userId=${userId}&postalCode=${postalCode}`);
+  };
+
+  console.log(listings);
 
   if (showLoginModal) {
     return (
@@ -203,11 +212,11 @@ export default function RecentlyViewedPage() {
                       </div>
                     </div>
                     <div className="mt-4">
-                      <Link href={`/listing/${listing.uniqueId}`}>
-                        <button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-xl text-sm font-medium transition">
+                        <button 
+                          onClick={() => handleViewFullListing(listing)} 
+                          className="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-xl text-sm font-medium transition">
                           View Full Listing
                         </button>
-                      </Link>
                     </div>
                   </div>
                 )}
