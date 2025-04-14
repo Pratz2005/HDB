@@ -17,19 +17,17 @@ const geistMono = Geist_Mono({
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
+  // Hide header and footer on homepage and auth pages
+  const showHeaderFooter = pathname !== "/" && !pathname.startsWith("/auth");
 
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}>
-        {/* Render Header only on non-homepage */}
-        {pathname !== "/" && <Header />}
-        
+        {showHeaderFooter && <Header />}
         <main className="flex-grow flex flex-col">
           {children}
         </main>
-        
-        {/* Render Footer only on non-homepage */}
-        {pathname !== "/" && <Footer />}
+        {pathname!=="/" && <Footer />}
       </body>
     </html>
   );
