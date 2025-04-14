@@ -2,6 +2,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Footer from "../components/Footer";
+import Header from "../components/header";
 import { usePathname } from "next/navigation";
 
 const geistSans = Geist({
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
+        {pathname !== "/" && <Header />}
         <main className="flex-grow flex flex-col">{children}</main>
 
         {/* 👇 Only render Footer if not on home page */}

@@ -52,7 +52,7 @@ export default function HDBResalePricePrediction() {
     setLoading(true);
     try {
       // Send request to the backend prediction endpoint
-      const response = await fetch("http://127.0.0.1:8000/predict", {
+      const response = await fetch("http://localhost:8000/predict", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -88,7 +88,7 @@ export default function HDBResalePricePrediction() {
   useEffect(() => {
     const fetchTrendData = async () => {
       try {
-        const url = `http://127.0.0.1:8000/trend?town=${encodeURIComponent(
+        const url = `http://localhost:8000/trend?town=${encodeURIComponent(
           formData.town
         )}&flat_type=${encodeURIComponent(formData.flatType)}`;
         const trendResponse = await fetch(url);
@@ -127,173 +127,136 @@ export default function HDBResalePricePrediction() {
   }, [formData.town, formData.flatType]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 text-gray-800">
-      {/* Header */}
-      <header className="w-full flex items-center justify-between px-6 py-2 shadow-sm bg-orange-500">
-      {/* LEFT SIDE: Logo + Buttons */}
-      <div className="flex items-center gap-4">
-        <Link href="/">
-          <Image
-            src="/logo.png"
-            alt="Smart HDB Finder Logo"
-            width={60}
-            height={60}
-            className="object-contain"
-          />
-        </Link>
-        <button className="border-2 border-white text-white px-3 py-1 rounded-lg font-semibold hover:bg-orange-300 hover:text-white transition">
-          Find myHDB!
-        </button>
-        <Link href="/insights">
-        <div className="cursor-pointer border-2 border-white text-white px-3 py-1 rounded-lg font-semibold hover:bg-orange-300 hover:text-white transition">
-          HDB Market Watch
-        </div>
-        </Link>
-      </div>
-
-      {/* RIGHT SIDE: Hamburger */}
-      <HamburgerMenu />
-    </header>
-
-
-      {/* Main Content */}
-      <main className="flex flex-row flex-1">
-        {/* Left Panel: Input Form */}
-        <div className="w-full max-w-sm border-r border-gray-200 p-6 bg-white">
-          <h2 className="text-lg font-bold mb-6 text-center border border-gray-500 p-4">
-            Predictive Calculator
-          </h2>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Town */}
-            <div>
-              <label className="block mb-1 font-medium text-gray-700">Town</label>
-              <select
-                name="town"
-                value={formData.town}
-                onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
-              >
-                <option>ANG MO KIO</option>
-                <option>Bedok</option>
-                <option>Bukit Batok</option>
-                <option>Bukit Merah</option>
-                <option>Bukit Panjang</option>
-                <option>Choa Chu Kang</option>
-                <option>Clementi</option>
-                <option>Geylang</option>
-                <option>Hougang</option>
-                <option>Jurong East</option>
-                <option>Jurong West</option>
-                <option>Kallang/Whampoa</option>
-                <option>Marine Parade</option>
-                <option>Pasir Ris</option>
-                <option>Punggol</option>
-                <option>Queenstown</option>
-                <option>Sembawang</option>
-                <option>Sengkang</option>
-                <option>Tampines</option>
-                <option>Toa Payoh</option>
-                <option>Woodlands</option>
-                <option>Yishun</option>
-              </select>
-            </div>
-
-            {/* Flat Type */}
-            <div>
-              <label className="block mb-1 font-medium text-gray-700">
-                Select Flat Type
-              </label>
-              <select
-                name="flatType"
-                value={formData.flatType}
-                onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
-              >
-                <option>3 ROOM</option>
-                <option>4 ROOM</option>
-                <option>5 ROOM</option>
-                <option>EXECUTIVE</option>
-              </select>
-            </div>
-
-            {/* Future Year */}
-            <div>
-              <label className="block mb-1 font-medium text-gray-700">Future Year</label>
-              <input
-                type="number"
-                step="1"
-                name="futureYear"
-                value={formData.futureYear}
-                onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
-              />
-            </div>
-
-            {/* Month */}
-            <div>
-              <label htmlFor="month" className="block mb-1 font-medium text-gray-700">
-                Month
-              </label>
-              <select
-                id="month"
-                name="month"
-                value={formData.month}
-                onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
-              >
-                <option value="January">January</option>
-                <option value="February">February</option>
-                <option value="March">March</option>
-                <option value="April">April</option>
-                <option value="May">May</option>
-                <option value="June">June</option>
-                <option value="July">July</option>
-                <option value="August">August</option>
-                <option value="September">September</option>
-                <option value="October">October</option>
-                <option value="November">November</option>
-                <option value="December">December</option>
-              </select>
-            </div>
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              disabled={loading}
-              className={`w-full mt-4 p-3 text-white rounded transition ${
-                loading ? "bg-gray-400" : "bg-orange-500 hover:bg-orange-600"
-              }`}
+    <div className="flex flex-row w-full h-full">
+      {/* Left Panel: Input Form */}
+      <div className="w-full max-w-sm border-r border-gray-200 p-6 bg-white">
+        <h2 className="text-lg font-bold mb-6 text-center border border-gray-500 p-4">
+          Predictive Calculator
+        </h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block mb-1 font-medium text-gray-700">Town</label>
+            <select
+              name="town"
+              value={formData.town}
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 rounded"
             >
-              {loading ? "Predicting..." : "Submit"}
-            </button>
-          </form>
-        </div>
-
-        {/* Right Panel: Prediction Details and Price Trend Graph */}
-        <div className="flex-1 p-8">
-          <h2 className="text-2xl font-bold mb-3">Prediction Results</h2>
-          <p className="mb-6">
-            Predicted average resale price for a{" "}
-            <span className="font-semibold">{formData.flatType}</span> flat in{" "}
-            <span className="font-semibold">{formData.town}</span> for the year{" "}
-            <span className="font-semibold">{formData.futureYear}</span> during{" "}
-            <span className="font-semibold">{formData.month}</span> is{" "}
-            <span className="font-bold text-blue-700">
-              {prediction || "N/A"}
-            </span>.
-          </p>
-
-          {/* Trend Graph */}
-          {trendData ? (
-            <div>
-              <h3 className="text-xl font-bold mb-2">Price Trends</h3>
-              <Line data={trendData} />
-            </div>
-          ) : (
-            <p className="text-gray-500">Loading trend data...</p>
-          )}
-        </div>
-      </main>
+              <option>ANG MO KIO</option>
+              <option>Bedok</option>
+              <option>Bukit Batok</option>
+              <option>Bukit Merah</option>
+              <option>Bukit Panjang</option>
+              <option>Choa Chu Kang</option>
+              <option>Clementi</option>
+              <option>Geylang</option>
+              <option>Hougang</option>
+              <option>Jurong East</option>
+              <option>Jurong West</option>
+              <option>Kallang/Whampoa</option>
+              <option>Marine Parade</option>
+              <option>Pasir Ris</option>
+              <option>Punggol</option>
+              <option>Queenstown</option>
+              <option>Sembawang</option>
+              <option>Sengkang</option>
+              <option>Tampines</option>
+              <option>Toa Payoh</option>
+              <option>Woodlands</option>
+              <option>Yishun</option>
+            </select>
+          </div>
+  
+          <div>
+            <label className="block mb-1 font-medium text-gray-700">
+              Select Flat Type
+            </label>
+            <select
+              name="flatType"
+              value={formData.flatType}
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 rounded"
+            >
+              <option>3 ROOM</option>
+              <option>4 ROOM</option>
+              <option>5 ROOM</option>
+              <option>EXECUTIVE</option>
+            </select>
+          </div>
+  
+          <div>
+            <label className="block mb-1 font-medium text-gray-700">Future Year</label>
+            <input
+              type="number"
+              step="1"
+              name="futureYear"
+              value={formData.futureYear}
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 rounded"
+            />
+          </div>
+  
+          <div>
+            <label htmlFor="month" className="block mb-1 font-medium text-gray-700">
+              Month
+            </label>
+            <select
+              id="month"
+              name="month"
+              value={formData.month}
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 rounded"
+            >
+              <option value="January">January</option>
+              <option value="February">February</option>
+              <option value="March">March</option>
+              <option value="April">April</option>
+              <option value="May">May</option>
+              <option value="June">June</option>
+              <option value="July">July</option>
+              <option value="August">August</option>
+              <option value="September">September</option>
+              <option value="October">October</option>
+              <option value="November">November</option>
+              <option value="December">December</option>
+            </select>
+          </div>
+  
+          <button
+            type="submit"
+            disabled={loading}
+            className={`w-full mt-4 p-3 text-white rounded transition ${
+              loading ? "bg-gray-400" : "bg-orange-500 hover:bg-orange-600"
+            }`}
+          >
+            {loading ? "Predicting..." : "Submit"}
+          </button>
+        </form>
+      </div>
+  
+      {/* Right Panel: Prediction Details and Price Trend Graph */}
+      <div className="flex-1 p-8">
+        <h2 className="text-2xl font-bold mb-3">Prediction Results</h2>
+        <p className="mb-6">
+          Predicted average resale price for a{" "}
+          <span className="font-semibold">{formData.flatType}</span> flat in{" "}
+          <span className="font-semibold">{formData.town}</span> for the year{" "}
+          <span className="font-semibold">{formData.futureYear}</span> during{" "}
+          <span className="font-semibold">{formData.month}</span> is{" "}
+          <span className="font-bold text-blue-700">
+            {prediction || "N/A"}
+          </span>.
+        </p>
+  
+        {trendData ? (
+          <div>
+            <h3 className="text-xl font-bold mb-2">Price Trends</h3>
+            <Line data={trendData} />
+          </div>
+        ) : (
+          <p className="text-gray-500">Loading trend data...</p>
+        )}
+      </div>
     </div>
-  );
+  );  
 }

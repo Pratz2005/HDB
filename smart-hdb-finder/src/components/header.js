@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import HamburgerMenu from "../../components/Hamburger";
+import HamburgerMenu from "./Hamburger";
 
 export default function Header() {
   return (
@@ -18,9 +18,11 @@ export default function Header() {
             className="object-contain"
           />
         </Link>
-        <button className="border-2 border-white text-white px-3 py-1 rounded-lg font-semibold hover:bg-orange-300 hover:text-white transition">
-          Find myHDB!
-        </button>
+        <Link href="/dashboard">
+          <div className="cursor-pointer border-2 border-white text-white px-3 py-1 rounded-lg font-semibold hover:bg-orange-300 hover:text-white transition">
+            Find myHDB!
+          </div>
+        </Link>
         <Link href="/insights">
         <div className="cursor-pointer border-2 border-white text-white px-3 py-1 rounded-lg font-semibold hover:bg-orange-300 hover:text-white transition">
           HDB Market Watch
