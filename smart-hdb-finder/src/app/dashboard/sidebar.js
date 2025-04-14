@@ -1,4 +1,4 @@
-"use client";
+"use client"; 
 import { useCallback, useState, useEffect } from "react";
 import PriceRangeSlider from "./priceRange";
 import { locationOptions, flatTypeOptions } from "./dropdownOptions";
@@ -12,6 +12,7 @@ export default function Sidebar({ setSearchResults }) {
   const [flatType, setFlatType] = useState("");
   const [priceRange, setPriceRange] = useState({ minPrice: 300000, maxPrice: 750000 });
   const [loading, setLoading] = useState(false);
+  // Add errorMessage state here
   const [errorMessage, setErrorMessage] = useState("");
 
   const handlePriceChange = useCallback((min, max) => {
@@ -35,6 +36,9 @@ export default function Sidebar({ setSearchResults }) {
     superMarket: false,
     mrtStation: false,
     clinics: false,
+    primarySchool: false,
+    secondarySchool: false,
+    juniorCollege: false,
   });
 
   const toggleSwitch = (key) => {
@@ -143,9 +147,12 @@ export default function Sidebar({ setSearchResults }) {
         {[
           { label: "Community Club", key: "communityClub" },
           { label: "Hawker Centre", key: "hawkerCentre" },
-          { label: "Supermarket", key: "superMarket" },
+          { label: "Super Market", key: "superMarket" },
           { label: "MRT Station", key: "mrtStation" },
           { label: "Clinics", key: "clinics" },
+          { label: "Primary Schools", key: "primarySchool" },
+          { label: "Secondary Schools", key: "secondarySchool" },
+          { label: "Junior Colleges", key: "juniorCollege" },
         ].map((item) => (
           <div key={item.key} className="flex justify-between items-center mb-4">
             <span className="text-gray-700">{item.label}</span>
