@@ -1,6 +1,4 @@
 "use client"; // Required if you're using Next.js 13+ in the app/ directory
-import Image from "next/image";
-import Link from "next/link";
 
 import { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
