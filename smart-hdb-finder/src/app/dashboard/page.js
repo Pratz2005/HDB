@@ -12,7 +12,6 @@ import { useSearchParams } from "next/navigation";
 export default function DashboardPage() {
   const [localClickedListing, setlocalClickedListing] = useState(null); // store clicked listing
   const [searchResultsMarkers, setSearchResultsMarkers] = useState([]); // store markers for search results
-  const [localClickedListingMarker, setlocalClickedListingMarker] = useState(null);
   const [nearbyAmenitiesMarkers, setNearbyAmenitiesMarkers] = useState([]); // store markers for nearby amenities
   const [searchResults, setSearchResults] = useState([]); // store full search results
   const [loadingAmenities, setLoadingAmenities] = useState(true); // to track loading state for the amenity markers
@@ -228,7 +227,7 @@ export default function DashboardPage() {
                   <React.Fragment key={index}>{marker}</React.Fragment>
                 ))
               ) : (
-                <div>Loading amenities...</div>
+                <div></div>
               )}
 
               {/* Render the clicked listing */}
