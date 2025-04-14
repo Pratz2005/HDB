@@ -125,27 +125,36 @@ export default function RecentlyViewedPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {listings.map((listing) => (
+            {listings.map((listing, index) => (
               <div key={listing.uniqueId} className="bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition duration-300">
-                <div className="relative h-36 bg-gray-200">
-                  <div className="absolute inset-0 flex items-center justify-center text-gray-400">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 22V12h6v10" />
-                    </svg>
-                  </div>
+                {/* Replaced Placeholder with Image */}
+                <div className="relative h-36">
+                  <Image
+                    src={
+                      index % 4 === 0
+                        ? "/hdb_about1.jpg"
+                        : index % 4 === 1
+                        ? "/hdb_about2.jpg"
+                        : index % 4 === 2
+                        ? "/hdb_about3.jpeg"
+                        : "/hdb_about1.jpg"
+                    }
+                    alt="HDB Listing"
+                    fill
+                    className="object-cover"
+                  />
                   <div className="absolute top-3 right-3 bg-blue-500 text-white px-2 py-1 rounded-lg text-xs font-semibold">
                     {listing.flat_type}
                   </div>
                 </div>
-                
+
                 <div className="p-4">
                   <h3 className="text-lg font-bold text-blue-600 mb-1 truncate">
                     {listing.block} {listing.street_name}
                   </h3>
                   <p className="text-sm text-gray-600 mb-2">{listing.town}</p>
                   <p className="text-xl font-bold text-orange-500 mb-3">${listing.resale_price?.toLocaleString()}</p>
-                  
+
                   <div className="flex justify-between items-center text-sm text-gray-500 mb-3">
                     <div className="flex items-center">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -160,9 +169,9 @@ export default function RecentlyViewedPage() {
                       {listing.month || "-"}
                     </div>
                   </div>
-                  
+
                   <button
-                    onClick={() => toggleDetails(listing.uniqueId)} 
+                    onClick={() => toggleDetails(listing.uniqueId)}
                     className={`w-full text-sm py-2 px-3 rounded-xl font-medium transition ${
                       activeDetail === listing.uniqueId 
                         ? "bg-blue-100 text-blue-700" 
@@ -172,7 +181,7 @@ export default function RecentlyViewedPage() {
                     {activeDetail === listing.uniqueId ? "Hide Details" : "View Details"}
                   </button>
                 </div>
-                
+
                 {activeDetail === listing.uniqueId && (
                   <div className="px-4 pb-4 border-t border-gray-100 pt-3">
                     <div className="grid grid-cols-2 gap-3 text-sm">
