@@ -55,7 +55,7 @@ export default function RegisterPage() {
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <input
                             type="text"
-                            placeholder="Username"
+                            placeholder="Display Name"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                             required
@@ -67,8 +67,6 @@ export default function RegisterPage() {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
-                            pattern="^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$"
-                            title="Please enter a valid email address."
                             className="w-full text-black px-4 py-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none transition"
                         />
                         <input
