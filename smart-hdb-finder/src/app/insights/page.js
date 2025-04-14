@@ -51,7 +51,7 @@ export default function HDBResalePricePrediction() {
     setLoading(true);
     try {
       // Send request to the backend prediction endpoint
-      const response = await fetch("http://127.0.0.1:8000/predict", {
+      const response = await fetch("http://localhost:8000/predict", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -87,7 +87,7 @@ export default function HDBResalePricePrediction() {
   useEffect(() => {
     const fetchTrendData = async () => {
       try {
-        const url = `http://127.0.0.1:8000/trend?town=${encodeURIComponent(
+        const url = `http://localhost:8000/trend?town=${encodeURIComponent(
           formData.town
         )}&flat_type=${encodeURIComponent(formData.flatType)}`;
         const trendResponse = await fetch(url);
@@ -266,5 +266,5 @@ export default function HDBResalePricePrediction() {
         </div>
       </main>
     </div>
-  );
+  );  
 }
