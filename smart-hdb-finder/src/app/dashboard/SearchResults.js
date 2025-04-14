@@ -67,7 +67,7 @@ export default function SearchResults({ results, onClick }) {
 
   if (!results || !results.records || results.records.length === 0) {
     return (
-      <div className="text-gray-500 mt-4 text-sm">
+      <div className="text-gray-500 mt-4 text-xl">
         No results found. Try changing your filters.
       </div>
     );
