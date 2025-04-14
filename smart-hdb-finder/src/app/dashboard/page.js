@@ -159,7 +159,7 @@ export default function DashboardPage() {
     <div className="flex h-screen">
       <SearchLayout onClick={handleClick} getSearchResults={getSearchResults}/>
 
-      <div className="flex flex-col flex-grow px-4 pt-4 bg-gray-100">
+      <div className="flex flex-col flex-grow px-4 pt-4 mb-6 bg-gray-100">
         <h1 className="text-2xl font-bold text-black">Dashboard</h1>
         <div className="flex-grow">
         <MapContainer

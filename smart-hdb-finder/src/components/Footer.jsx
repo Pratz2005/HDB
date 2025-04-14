@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export default function Footer() {
   return (
-    <footer className="bg-orange-500 text-white px-4 py-6 mt-5">
+    <footer className="bg-orange-500 text-white px-4 py-6">
       <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-center">
         <div className="mb-4 md:mb-0 flex items-center space-x-2">
           <Image src="/logo.png" alt="Smart HDB Finder Logo" className="h-20 w-auto" width={80} height={80} />
