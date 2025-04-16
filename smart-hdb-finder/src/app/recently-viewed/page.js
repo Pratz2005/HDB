@@ -31,20 +31,28 @@ export default function RecentlyViewedPage() {
 
   const fetchRecentlyViewed = async (user) => {
     try {
-      const userRef = doc(db, "users", user.uid);
-      const userSnap = await getDoc(userRef);
-
-      if (userSnap.exists()) {
-        const data = userSnap.data();
-        const listingsWithIds = (data.recentlyViewed || []).map((listing, index) => ({
-          ...listing,
-          uniqueId: listing.uniqueId || `${listing.block}-${listing.street_name}-${index}`
-        }));
-        setListings(listingsWithIds);
+      const response = await fetch(`http://127.0.0.1:8000/recently-viewed/listing?user_id=${user.uid}`);
+  
+      if (!response.ok) {
+        throw new Error("Failed to fetch recently viewed listings");
       }
-      setLoading(false);
+  
+      const data = await response.json();
+      
+      // Ensure data is an array
+      const listingsArray = Array.isArray(data) ? data : [];
+      
+      // Add uniqueId to each listing if it doesn't exist
+      const processedListings = listingsArray.map((listing, index) => ({
+        ...listing,
+        uniqueId: listing.uniqueId || `${listing.block || ''}-${listing.street_name || ''}-${index}`
+      }));
+      
+      setListings(processedListings);
     } catch (error) {
       console.error("Error fetching recently viewed:", error);
+      setListings([]);
+    } finally {
       setLoading(false);
     }
   };

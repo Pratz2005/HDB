@@ -20,7 +20,7 @@ app.add_middleware(
 
 app.include_router(search_router)
 app.include_router(insights_router)
-app.include_router(recentlyViewed_router)
+app.include_router(recentlyViewed_router, prefix="/recently-viewed")
 
 @app.get("/")
 def read_root():

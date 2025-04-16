@@ -60,7 +60,7 @@ export default function DashboardPage() {
   const fetchListing = async () => {
     if (!userId || !postalCode) return;
     try {
-      const response = await fetch(`http://127.0.0.1:8000/listing?user_id=${userId}&postal_code=${postalCode}`);
+      const response = await fetch(`http://127.0.0.1:8000/recently-viewed/listing?user_id=${userId}&postal_code=${postalCode}`);
       if (response.ok) {
         const data = await response.json();
         setlocalClickedListing(data);
