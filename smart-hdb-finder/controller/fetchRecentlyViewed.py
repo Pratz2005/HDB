@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from .firebaseClient import db
+from .utils.firebaseClient import db
 import logging
 
 router = APIRouter()

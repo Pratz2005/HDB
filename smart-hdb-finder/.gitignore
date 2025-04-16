@@ -40,10 +40,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# env
-.env.*
-.env*
-
 .venv/
 __pycache__/
 .env/
@@ -56,5 +52,5 @@ venv/
 !.env.example
 
 # Firebase
-controller/firebase-key.json
-controller/firebase-example.json
+controller/utils/firebase-key.json
+firebase-key.json

@@ -3,10 +3,9 @@ import time
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .search import router as search_router
-from .oneMap import router as onemap_router
-from .insights import router as insights_router
-from .sync_firestore import fetch_and_upload_latest_hdb_data 
+from .search.mainFilter import router as search_router
+from .insights.predict import router as insights_router
+from .utils.sync_firestore import fetch_and_upload_latest_hdb_data 
 from .fetchRecentlyViewed import router as recentlyViewed_router
 
 app = FastAPI()
@@ -20,7 +19,6 @@ app.add_middleware(
 )
 
 app.include_router(search_router)
-app.include_router(onemap_router)
 app.include_router(insights_router)
 app.include_router(recentlyViewed_router)
 
@@ -36,8 +34,8 @@ def run_periodic_sync():
             print("🔥 Error during sync:", e)
         time.sleep(86400)
 
-# @app.on_event("startup")
-# def startup_event():
-#     print("🚀 Starting background Firestore sync thread...")
-#     thread = threading.Thread(target=run_periodic_sync, daemon=True)
-#     thread.start()
+@app.on_event("startup")
+def startup_event():
+    print("🚀 Starting background Firestore sync thread...")
+    thread = threading.Thread(target=run_periodic_sync, daemon=True)
+    thread.start()
