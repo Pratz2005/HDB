@@ -88,21 +88,21 @@ export default function SearchResults({ results, onClick }) {
             onClick={() => toggleExpand(index, record)}
           >
             <div>
-              <p className="text-lg font-semibold text-blue-700">
+              <p className="text-base font-semibold text-blue-700">
                 {record.block} {record.street_name}
               </p>
               <p className="text-sm text-gray-600">
                 {record.town} | {record.flat_type}
               </p>
             </div>
-            <p className="text-lg text-orange-500 font-bold">
+            <p className="text-base text-orange-500 font-bold">
               ${record.resale_price.toLocaleString()}
             </p>
           </button>
 
           {expandedIndex === index && (
             <div 
-              className="px-4 py-3 bg-white border-t border-gray-200 rounded-b-lg text-sm text-gray-700 space-y-2 overflow-y-auto">
+              className="px-4 py-3 bg-white border-t border-gray-200 rounded-b-lg text-xs text-gray-700 space-y-2 overflow-y-auto">
               <p><strong>Postal Code:</strong> {record.postal}</p>
               <p><strong>Floor Area (sqm):</strong> {record.floor_area_sqm}</p>
               <p><strong>Remaining Lease:</strong> {record.remaining_lease}</p>

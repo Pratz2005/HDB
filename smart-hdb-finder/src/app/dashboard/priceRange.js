@@ -83,7 +83,7 @@ export default function PriceRangeSlider({ onPriceChange }) {
 
   return (
     <div className="mb-6">
-      <h3 className="text-lg font-semibold mb-2 text-black">Price Range</h3>
+      <h3 className="text-base font-semibold text-black">Price Range</h3>
       <div className="relative w-full h-16 cursor-pointer" ref={sliderRef}>
         <div className="absolute top-8 w-full h-2 bg-orange-200 rounded-lg"></div>
         <div
@@ -106,7 +106,7 @@ export default function PriceRangeSlider({ onPriceChange }) {
           onMouseDown={handleMaxMouseDown}
         ></div>
       </div>
-      <div className="flex justify-between mt-2 text-lg text-black font-semibold">
+      <div className="flex justify-between mt-2 text-sm text-black font-semibold">
         <span>{formatPrice(minPrice)}</span>
         <span>{formatPrice(maxPrice)}</span>
       </div>

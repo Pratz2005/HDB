@@ -105,7 +105,7 @@ export default function Sidebar({ setSearchResults }) {
     >
       {/* Location Selection */}
       <div className="mb-4">
-        <label htmlFor="location" className="text-lg font-semibold text-black">
+        <label htmlFor="location" className="text-base font-semibold text-black">
           Location
         </label>
         <select
@@ -124,7 +124,7 @@ export default function Sidebar({ setSearchResults }) {
 
       {/* HDB Flat Type */}
       <div className="mb-4">
-        <label htmlFor="hdb-flat-type" className="text-lg font-semibold text-black">
+        <label htmlFor="hdb-flat-type" className="text-base font-semibold text-black">
           HDB Flat Type
         </label>
         <select
@@ -145,11 +145,11 @@ export default function Sidebar({ setSearchResults }) {
       <PriceRangeSlider onPriceChange={handlePriceChange} />
 
       <div className="mt-6">
-        <h2 className="text-lg font-semibold text-black mb-4">Nearby Amenities</h2>
+        <h2 className="text-base font-semibold text-black mb-4">Nearby Amenities</h2>
         {[
           { label: "Community Club", key: "communityClub" },
           { label: "Hawker Centre", key: "hawkerCentre" },
-          { label: "Super Market", key: "superMarket" },
+          { label: "Supermarket", key: "superMarket" },
           { label: "MRT Station", key: "mrtStation" },
           { label: "Clinics", key: "clinics" },
           { label: "Primary Schools", key: "primarySchool" },
