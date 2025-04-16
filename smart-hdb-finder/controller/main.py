@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from .search.mainFilter import router as search_router
-from .insights.predict import router as insights_router
+from .predict import router as insights_router
 from .utils.sync_firestore import fetch_and_upload_latest_hdb_data 
 from .fetchRecentlyViewed import router as recentlyViewed_router
 

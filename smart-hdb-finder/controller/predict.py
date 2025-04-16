@@ -9,8 +9,8 @@ router = APIRouter()
 
 # Construct an absolute file path to model_pipeline.pkl relative to this file.
 base_dir = os.path.dirname(os.path.abspath(__file__))
-model_path = os.path.join(base_dir, "..", "..", "model", "predictionModel", "model_pipeline.pkl")
-csv_path = os.path.join(base_dir, "..", "..", "model", "predictionModel", "ResaleData.csv")
+model_path = os.path.join(base_dir, "..", "model", "predictionModel", "model_pipeline.pkl")
+csv_path = os.path.join(base_dir, "..", "model", "predictionModel", "ResaleData.csv")
 
 # Load your merged pipeline (preprocessing + model)
 with open(model_path, "rb") as f:
