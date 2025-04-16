@@ -10,6 +10,7 @@ router = APIRouter()
 # Construct an absolute file path to model_pipeline.pkl relative to this file.
 base_dir = os.path.dirname(os.path.abspath(__file__))
 model_path = os.path.join(base_dir, "..", "..", "model", "predictionModel", "model_pipeline.pkl")
+csv_path = os.path.join(base_dir, "..", "..", "model", "predictionModel", "ResaleData.csv")
 
 # Load your merged pipeline (preprocessing + model)
 with open(model_path, "rb") as f:
@@ -59,7 +60,7 @@ async def predict(data: PredictionParams):
 async def get_trend(town: str, flat_type: str):
     try:
         # Load the CSV file (ensure the path is correct)
-        df = pd.read_csv("controller/insights/ResaleData.csv")
+        df = pd.read_csv(csv_path)
         
         # Convert 'month' to datetime and create 'year' column
         df['month'] = pd.to_datetime(df['month'], format="%Y-%m", errors='coerce')
