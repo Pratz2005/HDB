@@ -123,7 +123,7 @@ export default function RecentlyViewedPage() {
             </svg>
             <h3 className="text-xl font-medium text-gray-900 mb-2">No recently viewed properties</h3>
             <p className="text-gray-600 mb-6">Start browsing to see your recently viewed HDB listings here.</p>
-            <Link href="/search">
+            <Link href="/dashboard">
               <button className="inline-flex items-center px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-medium rounded-xl transition">
                 Browse Listings
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
