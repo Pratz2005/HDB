@@ -18,6 +18,7 @@ async def get_listing(user_id: str, postal_code: str = None):
             # If postal_code is provided, fetch specific listing
             listing = await fetch_listing(user_id, postal_code)
             if not listing:
+                logger.error("Listing not found for user_id: %s, postal_code: %s", user_id, postal_code)
                 raise HTTPException(status_code=404, detail="Listing not found")
             
             # Get HDB record to get coordinates

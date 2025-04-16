@@ -14,7 +14,7 @@ class HDBRecord(BaseModel):
     remaining_lease: str
     resale_price: float
     geohash: str
-    nearby_amenities: List[str] = Field(default_factory=list)
+    nearby_amenities: List[dict] = Field(default_factory=list)
     
     @root_validator(pre=True)
     def map_firestore_keys(cls, values):
