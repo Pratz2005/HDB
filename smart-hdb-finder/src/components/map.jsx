@@ -38,8 +38,9 @@ export default function MapComponent({ position, children, nearbyMarkers, localC
 
          useEffect(() => {
             if (nearbyMarkers && nearbyMarkers.length > 0) {
+                const boundsArray = [];
                 // collect all marker latLngs
-                const boundsArray = nearbyMarkers.map(marker => marker.getLatLng());
+                // const boundsArray = nearbyMarkers.map(marker => marker.getLatLng());
         
                 // ensure localClickedListing is valid before adding it to bounds
                 if (localClickedListing && localClickedListing.latitude && localClickedListing.longitude) {
@@ -52,7 +53,7 @@ export default function MapComponent({ position, children, nearbyMarkers, localC
         
                 // adjust map view to fit all markers
                 if (map) {
-                    map.fitBounds(bounds, { padding: [50, 50] }); // padding to make sure it doesn't cut off right at the marker
+                    map.fitBounds(bounds, { padding: [100, 100] }); // padding to make sure it doesn't cut off right at the marker
         
                     const currentZoom = map.getZoom();
                     if (currentZoom > 17) {

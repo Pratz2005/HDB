@@ -157,16 +157,16 @@ export default function DashboardPage() {
     }
   }, [localClickedListing]);
 
-  // when a listing is clicked, popup opens automatically
-  const openAllPopups = () => {
-    nearbyAmenitiesMarkerRefs.current.forEach((marker, index) => {
-      if (marker) {
-        setTimeout(() => {
-          marker.openPopup();
-        }, index * 300); // stagger opening by 300ms per marker
-      }
-    });
-  };
+  // // when a listing is clicked, popup opens automatically
+  // const openAllPopups = () => {
+  //   nearbyAmenitiesMarkerRefs.current.forEach((marker, index) => {
+  //     if (marker) {
+  //       setTimeout(() => {
+  //         marker.openPopup();
+  //       }, index * 300); // stagger opening by 300ms per marker
+  //     }
+  //   });
+  // };
 
   const openLocalClickedListingPopup = () => {
     if (localClickedListingMarkerRefs.current) {
@@ -176,11 +176,11 @@ export default function DashboardPage() {
 
   // when a listing is clicked, popup opens automatically
   useEffect(() => {
-    if (localClickedListing && nearbyAmenitiesMarkers.length > 0) {
+    if (localClickedListing) {
       openLocalClickedListingPopup();
 
-      const timer = setTimeout(openAllPopups, 100); 
-      return () => clearTimeout(timer);
+      // const timer = setTimeout(openAllPopups, 100); 
+      // return () => clearTimeout(timer);
     }
   }, [localClickedListing, nearbyAmenitiesMarkers]);
 
