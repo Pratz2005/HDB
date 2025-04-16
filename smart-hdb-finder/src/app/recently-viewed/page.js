@@ -31,20 +31,28 @@ export default function RecentlyViewedPage() {
 
   const fetchRecentlyViewed = async (user) => {
     try {
-      const userRef = doc(db, "users", user.uid);
-      const userSnap = await getDoc(userRef);
-
-      if (userSnap.exists()) {
-        const data = userSnap.data();
-        const listingsWithIds = (data.recentlyViewed || []).map((listing, index) => ({
-          ...listing,
-          uniqueId: listing.uniqueId || `${listing.block}-${listing.street_name}-${index}`
-        }));
-        setListings(listingsWithIds);
+      const response = await fetch(`http://127.0.0.1:8000/recently-viewed/listing?user_id=${user.uid}`);
+  
+      if (!response.ok) {
+        throw new Error("Failed to fetch recently viewed listings");
       }
-      setLoading(false);
+  
+      const data = await response.json();
+      
+      // Ensure data is an array
+      const listingsArray = Array.isArray(data) ? data : [];
+      
+      // Add uniqueId to each listing if it doesn't exist
+      const processedListings = listingsArray.map((listing, index) => ({
+        ...listing,
+        uniqueId: listing.uniqueId || `${listing.block || ''}-${listing.street_name || ''}-${index}`
+      }));
+      
+      setListings(processedListings);
     } catch (error) {
       console.error("Error fetching recently viewed:", error);
+      setListings([]);
+    } finally {
       setLoading(false);
     }
   };
@@ -123,7 +131,7 @@ export default function RecentlyViewedPage() {
             </svg>
             <h3 className="text-xl font-medium text-gray-900 mb-2">No recently viewed properties</h3>
             <p className="text-gray-600 mb-6">Start browsing to see your recently viewed HDB listings here.</p>
-            <Link href="/search">
+            <Link href="/dashboard">
               <button className="inline-flex items-center px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-medium rounded-xl transition">
                 Browse Listings
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
