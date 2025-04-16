@@ -113,9 +113,6 @@ export default function SearchResults({ results, onClick }) {
                   <li key={i}>{amenity.name} -  <strong>{(amenity.distance * 1000).toFixed(0)}m</strong></li>
                 ))}
               </ul>
-              <div>
-                <a href="www.example.com" className="text-blue-500">View HDB</a>
-              </div>
             </div>
           )}
         </div>
