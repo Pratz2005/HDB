@@ -11,9 +11,9 @@ export default function Header() {
       <div className="flex items-center gap-4">
         <Link href="/">
           <Image
-            src="/logo.png"
+            src="/logo2.jpg"
             alt="Smart HDB Finder Logo"
-            width={100}
+            width={60}
             height={60}
             className="object-contain"
           />
