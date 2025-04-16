@@ -15,6 +15,7 @@ cd smart-hdb-finder
 Run the following command to install all necessary dependencies and match the required versions:
 ```sh
 npm install
+npm install chart.js react-chartjs-2
 ```
 This step ensures that everyone is working with the same package versions and avoids compatibility issues.
 
