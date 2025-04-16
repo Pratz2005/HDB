@@ -142,7 +142,7 @@ export default function HDBResalePricePrediction() {
                 onChange={handleChange}
                 className="w-full p-2 border border-gray-300 rounded"
               >
-                <option>ANG MO KIO</option>
+                <option>Ang Mo Kio</option>
                 <option>Bedok</option>
                 <option>Bukit Batok</option>
                 <option>Bukit Merah</option>
@@ -178,10 +178,10 @@ export default function HDBResalePricePrediction() {
                 onChange={handleChange}
                 className="w-full p-2 border border-gray-300 rounded"
               >
-                <option>3 ROOM</option>
-                <option>4 ROOM</option>
-                <option>5 ROOM</option>
-                <option>EXECUTIVE</option>
+                <option>3 Room</option>
+                <option>4 Room</option>
+                <option>5 Room</option>
+                <option>Executive</option>
               </select>
             </div>
 

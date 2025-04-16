@@ -34,8 +34,8 @@ def run_periodic_sync():
             print("🔥 Error during sync:", e)
         time.sleep(86400)
 
-@app.on_event("startup")
-def startup_event():
-    print("🚀 Starting background Firestore sync thread...")
-    thread = threading.Thread(target=run_periodic_sync, daemon=True)
-    thread.start()
+# @app.on_event("startup")
+# def startup_event():
+#     print("🚀 Starting background Firestore sync thread...")
+#     thread = threading.Thread(target=run_periodic_sync, daemon=True)
+#     thread.start()
