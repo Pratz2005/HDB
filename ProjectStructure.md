@@ -8,8 +8,6 @@ This structure separates responsibilities clearly across backend logic, frontend
 ## 📂 Root Directory
 ```
 smart-hdb-finder/
-├── main.py                    # API entry point or script runner
-├── firebase-key.json          # Firebase service credentials
 ├── package.json               # JavaScript dependencies
 ├── requirements.txt           # Python dependencies
 ├── .env, .gitignore           # Environment config and Git settings
@@ -23,15 +21,16 @@ Handles backend logic and orchestration.
 ```
 controller/
 ├── insights/
-│   └── predict.py                     # Handles price prediction logic
+│   └── predict.py                   # Handles price prediction logic
 ├── search/
-│   ├── mainFilter.py                 # Core HDB filtering logic
-│   └── optionalFilters.py            # Extra filters: MRT, amenities
+│   ├── mainFilter.py                # Core HDB filtering logic
+│   └── optionalFilters.py           # Extra filters: MRT, amenities
 ├── utils/
 │   ├── firebaseClient.py            # Firebase interaction layer
 │   ├── OneMap_token_auth.py         # OneMap token handling
 │   └── sync_firestore.py            # Syncs data to Firestore
-└── fetchRecentlyViewed.py           # Retrieves recent searches
+├── fetchRecentlyViewed.py           # Retrieves recent searches
+├── main.py                    # API entry point or script runner
 ```
 
 ---
@@ -44,7 +43,7 @@ model/
 ├── amenities/
 │   └── CHASClinic.py, MRTStation.py, Supermarket.py, ...  # Amenity data models
 ├── hdb/
-│   ├── HDBRecord.py                # HDB listing data class
+│   ├── HDBRecord.py               # HDB listing data class
 │   └── HDBSearchParams.py         # Filtering parameter structure
 └── predictionModel/
     ├── model_pipeline.pkl         # Serialized ML pipeline
