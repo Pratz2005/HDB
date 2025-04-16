@@ -28,7 +28,6 @@ AMENITY_MAP = {
     "hawkerCentre": ("hawker_centres", Hawker),
     "communityClub": ("community_clubs", CommunityClub),
     "superMarket": ("supermarket_locations", Supermarket),
-    # below 3 toggles need to be added to frontend
     "primarySchool": ("primary_schools", PrimarySch),
     "secondarySchool": ("secondary_schools", SecondarySch),
     "juniorCollege": ("junior_colleges", JuniorCollege),
@@ -86,18 +85,17 @@ def meets_toggle_criteria(record_obj, toggles) -> bool:
             if is_enabled:
                 try:
                     candidates = AmenityQueryCache.fetch_cached_amenities(amenity_key, hdb_geohash_prefix)
-                    # Filter candidates by distance threshold (1km)
                     matching_candidates = []
                     for candidate in candidates:
                         dist = calculate_distance(record_obj.latitude, record_obj.longitude,
                                                   candidate.latitude, candidate.longitude)
                         logger.info(f"Distance to {candidate.name}: {dist:.2f} km")
                         if dist <= 0.5: #within 500m
-                            matching_candidates.append(candidate)
+                            matching_candidates.append((candidate, dist))
                     # If no candidates for this amenity type meet the threshold, return False
                     if not matching_candidates:
                         return False
-                    for candidate in matching_candidates:
+                    for candidate, dist in matching_candidates:
                         record_obj.nearby_amenities.append({
                             "name": candidate.name,
                             "distance": dist,
