@@ -6,9 +6,9 @@ export default function Footer() {
     <footer className="bg-orange-500 text-white px-4 py-6">
       <div className="max-w-screen-xl mx-auto flex flex-col justify-center items-center">
         <div className="flex flex-col md:flex-row md:space-x-8 text-base text-white text-center">
-          <a href="/about-us" target="_blank" rel="noopener noreferrer" className="hover:text-white mb-2 md:mb-0">
+          <Link href="/about-us" className="hover:text-white mb-2 md:mb-0">
             About Us
-          </a>
+          </Link>
           <a href="https://github.com/softwarelab3/2006-SCMA-U2" target="_blank" rel="noopener noreferrer" className="hover:text-white mb-2 md:mb-0">
             Github
           </a>
