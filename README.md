@@ -11,6 +11,7 @@ Smart HDB Finder helps home buyers narrow down past resale listings efficiently,
   - [Installation]
   - [Frontend](#frontend)
   - [Backend](#backend)
+  - [Scripts](link)
 - [App Design](#app-design)
   - [Frontend](#frontend)
   - [Backend](#backend)
@@ -139,6 +140,15 @@ Install required packages
 ```sh
 pip install -r requirements.txt
 ```
+
+### Available NPM Scripts
+| Command                | Description                              |
+|------------------------|------------------------------------------|
+| `npm run dev:api`      | Starts FastAPI backend server            |
+| `npm run dev:token`    | OneMap API Token Authentication          |
+| `npm run dev:db`       | Tests database connection                |
+| `npm run dev:frontend` | Runs website and authenticates token     |
+
 
 ## App Design
 ![System Architecture](link)
