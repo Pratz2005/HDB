@@ -7,8 +7,8 @@ Smart HDB Finder helps home buyers narrow down past resale listings efficiently,
 ## Table of Contents
 - [Project Deliverables](#deliverables)
 - [Setup Instructions](#setup-instructions)
-  - [Prerequisites]
-  - [Installation]
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
   - [Frontend](#frontend)
   - [Backend](#backend)
   - [Scripts](link)
