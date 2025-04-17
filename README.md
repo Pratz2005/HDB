@@ -151,6 +151,24 @@ pip install -r requirements.txt
 
 
 ## App Design
-![System Architecture](link)
+![System Architecture](deliverables/SystemArchitecture.png)
+
+📁 [Project Structure](ProjectStructure.md)
+
+### Frontend Stack
+![Next.js](https://img.shields.io/badge/Next.js-15.1.7-black?logo=next.js)
+![React](https://img.shields.io/badge/React-19.0.0-blue?logo=react)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4.17-06B6D4?logo=tailwindcss)
+![Chart.js](https://img.shields.io/badge/Chart.js-4.4.8-orange?logo=chartdotjs)
+![Leaflet](https://img.shields.io/badge/Leaflet-1.9.4-brightgreen?logo=leaflet)
+
+
+### Backend Stack
+![FastAPI](https://img.shields.io/badge/FastAPI-0.110.0-009688?logo=fastapi)
+![Firebase](https://img.shields.io/badge/Firebase-11.4.0-FFCA28?logo=firebase)
+![Uvicorn](https://img.shields.io/badge/Uvicorn-0.34.0-222222)
+
+
+
 
 
