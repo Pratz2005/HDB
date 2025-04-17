@@ -11,12 +11,12 @@ Smart HDB Finder helps home buyers narrow down past resale listings efficiently,
   - [Installation](#installation)
   - [Frontend](#frontend)
   - [Backend](#backend)
-  - [Scripts](link)
+  - [Scripts](#available-npm-scripts)
 - [App Design](#app-design)
-  - [Frontend](#frontend)
-  - [Backend](#backend)
+  - [Frontend stack](#frontend-stack)
+  - [Backend stack](#backend-stack)
+  - [Project directory](#smartHDB-Finder-–-Project-Structure)
 - [External APIs and Datasets](#external-apis-and-datasets)
-- [Contributors](#contributors)
 
 ## Deliverables
 <table>
