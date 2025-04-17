@@ -34,12 +34,12 @@ Smart HDB Finder helps home buyers narrow down past resale listings efficiently,
 <td width="50%" valign="top">
 
 ## 📊 Diagrams
-1. [Use Case Diagram](link-to-use-case-diagram)
-2. [Class Diagram](link-to-class-diagram)
-3. [Class Stereotype](link-to-stereotype-diagram)
+1. [Use Case Diagram](link)
+2. [Class Diagram](deliverables/classDiagram.png)
+3. [Class Stereotype](deliverables/classStereotype.png)
 4. [Sequence Diagrams](link-to-sequence-diagrams)
 5. [Dialog Map](link-to-dialog-map)
-6. [System Architecture](link-to-system-architecture)
+6. [System Architecture](deliverables/systemArchitecture.png)
 
 </td>
 </tr>
