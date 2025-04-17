@@ -17,7 +17,6 @@ Smart HDB Finder helps home buyers narrow down past resale listings efficiently,
   - [Backend stack](#backend-stack)
   - [Project structure](#project-structure)
 - [External APIs and Datasets](#external-apis--datasets)
-)
 
 ## Deliverables
 <table>
@@ -166,7 +165,7 @@ pip install -r requirements.txt
 ![Firebase](https://img.shields.io/badge/Firebase-11.4.0-FFCA28?logo=firebase)
 ![Uvicorn](https://img.shields.io/badge/Uvicorn-0.34.0-222222)
 
-### 📁 Project Structure
+### Project Structure
 ---
 
 #### 📂 Root Directory
