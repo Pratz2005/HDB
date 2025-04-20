@@ -146,7 +146,6 @@ pip install -r requirements.txt
 |------------------------|------------------------------------------|
 | `npm run dev:api`      | Starts FastAPI backend server            |
 | `npm run dev:token`    | OneMap API Token Authentication          |
-| `npm run dev:db`       | Tests database connection                |
 | `npm run dev:frontend` | Runs website and authenticates token     |
 
 
